@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Qual_palavra_nivel.FXMLNivelController">
+    <stylesheets>
+        <URL value="@fxmlnivel.css" />
+    </stylesheets>
+   <children>
+      <Button fx:id="facil" layoutX="175.0" layoutY="137.0" mnemonicParsing="false" onAction="#nivel_facil" prefHeight="25.0" prefWidth="250.0" text="Fácil">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="medio" layoutX="175.0" layoutY="209.0" mnemonicParsing="false" onAction="#nivel_medio" prefHeight="25.0" prefWidth="250.0" text="Médio">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="dificil" layoutX="175.0" layoutY="283.0" mnemonicParsing="false" onAction="#nivel_dificil" prefHeight="25.0" prefWidth="250.0" text="Difícil">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Label layoutX="202.0" layoutY="44.0" text="Qual é a palavra?">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

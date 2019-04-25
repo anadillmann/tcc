@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Qual_palavra_facil.FXMLFacilController">
+    <stylesheets>
+        <URL value="@fxmlfacil.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="194.0" layoutY="46.0" prefHeight="38.0" prefWidth="212.0" text="Qual é a palavra?">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="silaba_aparece" layoutX="274.0" layoutY="162.0" prefHeight="38.0" prefWidth="52.0" textAlignment="CENTER" textFill="#110202">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="opcao1" layoutX="191.0" layoutY="279.0" mnemonicParsing="false" onAction="#verefica_silaba" prefHeight="25.0" prefWidth="52.0" />
+      <TextField fx:id="preencher" layoutX="380.0" layoutY="162.0" prefHeight="38.0" prefWidth="52.0" />
+      <ImageView fx:id="imagem_facil" fitHeight="53.0" fitWidth="52.0" layoutX="168.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="opcao2" layoutX="284.0" layoutY="280.0" mnemonicParsing="false" onAction="#verefica_silaba" prefHeight="25.0" prefWidth="52.0" />
+      <Button fx:id="opcao3" layoutX="380.0" layoutY="279.0" mnemonicParsing="false" onAction="#verefica_silaba" prefHeight="25.0" prefWidth="52.0" />
+      <ProgressBar fx:id="progresso" layoutX="1.0" layoutY="374.0" prefHeight="25.0" prefWidth="600.0" progress="0.06" />
+   </children>
+</AnchorPane>

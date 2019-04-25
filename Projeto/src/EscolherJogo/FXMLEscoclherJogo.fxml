@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="EscolherJogo.FXMLEscolherJogoController">
+    <stylesheets>
+        <URL value="@fxmlescoclherjogo.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="168.0" layoutY="35.0" text="Jogos de Alfabetização">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Button fx:id="roleta" layoutX="205.0" layoutY="175.0" mnemonicParsing="false" onAction="#abrir_roleta" prefHeight="25.0" prefWidth="201.0" text="Roleta Silábica" />
+      <Button fx:id="q_palavra" layoutX="205.0" layoutY="229.0" mnemonicParsing="false" onAction="#abrir_qpalavra" prefHeight="25.0" prefWidth="201.0" text="Qual é  a palavra?" />
+      <Label layoutX="193.0" layoutY="93.0" text="Bem vindo ao mundo das letras!!!">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="voltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+   </children>
+</AnchorPane>
