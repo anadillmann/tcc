@@ -24,11 +24,12 @@ public class FXMLInicialController implements Initializable {
         entrar.getScene().getWindow().hide();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEscolherJogo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EscolherJogo/FXMLEscolherJogo.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
 
@@ -40,8 +41,7 @@ public class FXMLInicialController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
+
     }
 
 }

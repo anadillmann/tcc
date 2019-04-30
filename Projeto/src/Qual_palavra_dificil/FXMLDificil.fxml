@@ -46,5 +46,6 @@
       <Button fx:id="opcao1" layoutX="67.0" layoutY="267.0" mnemonicParsing="false" onAction="#verefica_silabas" prefHeight="25.0" prefWidth="52.0" />
       <Button fx:id="opcao4" layoutX="419.0" layoutY="267.0" mnemonicParsing="false" onAction="#verefica_silabas" prefHeight="25.0" prefWidth="52.0" />
       <Button fx:id="opcao3" layoutX="301.0" layoutY="267.0" mnemonicParsing="false" onAction="#verefica_silabas" prefHeight="25.0" prefWidth="52.0" />
+      <Button fx:id="voltar" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
    </children>
 </AnchorPane>
