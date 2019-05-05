@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="EscolherJogo.FXMLEscolherJogoController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EscolherJogo.FXMLEscolherJogoController">
     <stylesheets>
         <URL value="@fxmlescoclherjogo.css" />
     </stylesheets>
@@ -27,6 +27,6 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="voltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Button fx:id="voltar" layoutY="-1.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
    </children>
 </AnchorPane>

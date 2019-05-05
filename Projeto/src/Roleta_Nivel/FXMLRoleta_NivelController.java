@@ -1,9 +1,8 @@
-package EscolherJogo;
+package Roleta_Nivel;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,37 +11,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class FXMLEscolherJogoController implements Initializable {
+public class FXMLRoleta_NivelController implements Initializable {
 
     @FXML
-    Button roleta, q_palavra, voltar;
+    Button voltar, facil, medio, dificil;
 
     @FXML
-    public void abrir_roleta() {
-        roleta.getScene().getWindow().hide();
+    public void facil() {
+
+        facil.getScene().getWindow().hide();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Regras_Roleta/FXMLRegra_Roleta.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException ex) {
-            System.out.println("Erro ao abrir janela");
-            ex.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void abrir_qpalavra(ActionEvent event) {
-        q_palavra.getScene().getWindow().hide();
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Regras_Qualpalavra/FXMLRegra_Qualpalavra.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Roleta_Facil/FXMLRoleta_Facil.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -59,12 +39,38 @@ public class FXMLEscolherJogoController implements Initializable {
     }
 
     @FXML
-    public void voltar(ActionEvent event) {
+    public void medio() {
+        
+        medio.getScene().getWindow().hide();
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Roleta_Medio/FXMLRoleta_Medio.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+            System.out.println("Erro ao abrir janela");
+            ex.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    public void dificil() {
+
+    }
+
+    @FXML
+    public void voltar() {
         voltar.getScene().getWindow().hide();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EscolherJogo/FXMLEscolherJogo.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();

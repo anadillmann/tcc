@@ -30,7 +30,7 @@
       <ImageView fx:id="imagem1" fitHeight="53.0" fitWidth="52.0" layoutX="118.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="opcao2" layoutX="284.0" layoutY="280.0" mnemonicParsing="false" onAction="#verefica_silabas" prefHeight="25.0" prefWidth="52.0" />
       <Button fx:id="opcao3" layoutX="380.0" layoutY="279.0" mnemonicParsing="false" onAction="#verefica_silabas" prefHeight="25.0" prefWidth="52.0" />
-      <ProgressBar fx:id="progresso" layoutX="1.0" layoutY="374.0" prefHeight="25.0" prefWidth="600.0" progress="0.06" />
+      <ProgressBar fx:id="progresso" layoutX="1.0" layoutY="374.0" prefHeight="25.0" prefWidth="600.0" progress="0.05" />
       <TextField fx:id="preencher2" layoutX="394.0" layoutY="108.0" prefHeight="38.0" prefWidth="52.0" />
       <TextField fx:id="preencher3" layoutX="222.0" layoutY="168.0" prefHeight="38.0" prefWidth="52.0" />
       <TextField fx:id="preencher4" layoutX="393.0" layoutY="168.0" prefHeight="38.0" prefWidth="52.0" />

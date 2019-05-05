@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -19,9 +20,14 @@ public class FXMLMedioController implements Initializable {
 
     @FXML
     ImageView imagem1, imagem2;
+    @FXML
     Label silaba_aprece1, silaba_aparece2;
+    @FXML
     TextField prencher1, prencher2, prencher3, preencher4;
+    @FXML
     Button opcao1, opcao2, opcao3, opcao4, opcao5, opcao6, voltar;
+    @FXML
+    ProgressBar progresso;
 
     @FXML
     public void verefica_silabas() {
@@ -31,6 +37,7 @@ public class FXMLMedioController implements Initializable {
 
     @FXML
     public void voltar(ActionEvent event) {
+        System.out.println("aaaaa");
         voltar.getScene().getWindow().hide();
 
         try {

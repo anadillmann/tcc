@@ -1,9 +1,8 @@
-package Qual_palavra_facil;
+package Roleta_Facil;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,36 +12,31 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class FXMLFacilController implements Initializable {
+public class FXMLRoleta_FacilController implements Initializable {
 
     @FXML
-    ImageView imagem_facil;
-    @FXML
-    Label silaba_aparece;
-    @FXML
-    TextField preencher;
-    @FXML
     Button opcao1, opcao2, opcao3, voltar;
+    @FXML
+    Label silaba_mostra;
+    @FXML
+    TextField silaba_falta;
     @FXML
     ProgressBar progresso;
 
     @FXML
     public void verefica_silaba() {
-        //vereficar se o botão que o usuário clicou é o correto
 
     }
 
     @FXML
-    public void voltar(ActionEvent event) {
-
+    public void voltar() {
         voltar.getScene().getWindow().hide();
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_nivel/FXMLNivel.fxml"));
-            Parent root = loader.load();
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Roleta_Nivel/FXMLRoleta_Nivel.fxml"));
+            Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setResizable(false);
@@ -58,7 +52,7 @@ public class FXMLFacilController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // sortear palavra, selecionar sílaba que vai aparecer, selecionar silabas aleatórias
+        // TODO
     }
 
 }

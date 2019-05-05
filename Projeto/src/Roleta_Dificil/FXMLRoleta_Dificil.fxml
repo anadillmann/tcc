@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Roleta_Dificil.FXMLRoleta_DificilController">
+    <stylesheets>
+        <URL value="@fxmlroleta_dificil.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="217.0" layoutY="25.0" text="Roleta Silábica">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="silaba_mostra" layoutX="432.0" layoutY="192.0" prefHeight="35.0" prefWidth="40.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="silaba_falta1" layoutX="484.0" layoutY="195.0" prefHeight="29.0" prefWidth="40.0" />
+      <TextField fx:id="silaba_falta2" layoutX="533.0" layoutY="196.0" prefHeight="29.0" prefWidth="40.0" />
+      <Button fx:id="opcao1" layoutX="431.0" layoutY="271.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" />
+      <Button fx:id="opcao2" layoutX="483.0" layoutY="271.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" />
+      <Button fx:id="opcao3" layoutX="533.0" layoutY="271.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" />
+      <Button fx:id="opcao4" layoutX="432.0" layoutY="307.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" />
+      <Button fx:id="opcao5" layoutX="483.0" layoutY="307.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" />
+      <Button fx:id="opcao6" layoutX="534.0" layoutY="306.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" />
+      <Button fx:id="opcao7" layoutX="433.0" layoutY="342.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" />
+      <Button fx:id="opcao8" layoutX="484.0" layoutY="341.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" />
+      <Button fx:id="opcao9" layoutX="535.0" layoutY="341.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" />
+      <Button fx:id="voltar" layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <ProgressBar fx:id="progresso" layoutY="377.0" prefHeight="25.0" prefWidth="602.0" progress="0.05" />
+   </children>
+</AnchorPane>

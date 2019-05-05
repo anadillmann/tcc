@@ -1,4 +1,4 @@
-package Qual_palavra_facil;
+package Regras_Qualpalavra;
 
 import java.io.IOException;
 import java.net.URL;
@@ -10,35 +10,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class FXMLFacilController implements Initializable {
+public class FXMLRegra_QualpalavraController implements Initializable {
 
     @FXML
-    ImageView imagem_facil;
-    @FXML
-    Label silaba_aparece;
-    @FXML
-    TextField preencher;
-    @FXML
-    Button opcao1, opcao2, opcao3, voltar;
-    @FXML
-    ProgressBar progresso;
+    Button voltar, jogar;
 
     @FXML
-    public void verefica_silaba() {
-        //vereficar se o botão que o usuário clicou é o correto
+    public void jogar(ActionEvent event) {
+        jogar.getScene().getWindow().hide();
 
-    }
-
-    @FXML
-    public void voltar(ActionEvent event) {
-
-        voltar.getScene().getWindow().hide();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_nivel/FXMLNivel.fxml"));
             Parent root = loader.load();
@@ -56,9 +38,29 @@ public class FXMLFacilController implements Initializable {
 
     }
 
+    @FXML
+    public void voltar(ActionEvent event) {
+                voltar.getScene().getWindow().hide();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EscolherJogo/FXMLEscolherJogo.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+            System.out.println("Erro ao abrir janela");
+            ex.printStackTrace();
+        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // sortear palavra, selecionar sílaba que vai aparecer, selecionar silabas aleatórias
+        // TODO
     }
 
 }
