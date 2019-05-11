@@ -40,7 +40,7 @@ public class FXMLRoleta_NivelController implements Initializable {
 
     @FXML
     public void medio() {
-        
+
         medio.getScene().getWindow().hide();
 
         try {
@@ -62,6 +62,22 @@ public class FXMLRoleta_NivelController implements Initializable {
 
     @FXML
     public void dificil() {
+        dificil.getScene().getWindow().hide();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Roleta_Dificil/FXMLRoleta_Dificil.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+            System.out.println("Erro ao abrir janela");
+            ex.printStackTrace();
+        }
 
     }
 

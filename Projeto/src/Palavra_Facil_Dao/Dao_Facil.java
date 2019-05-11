@@ -52,13 +52,12 @@ public class Dao_Facil implements Dao<Facil> {
                     ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Facil contato = new Facil();
-                    contato.setId_facil(rs.getInt("id_facil"));
                     contato.setNome_palavra_facil(rs.getString("nome_palavra_facil"));
                     palavra_f.add(contato);
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao pesquisar por contatos no banco de dados!");
+            System.out.println("Erro ao pesquisar por palavras no banco de dados!");
         }
         return palavra_f;
     }

@@ -10,12 +10,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class FXMLRegra_QualpalavraController implements Initializable {
 
     @FXML
     Button voltar, jogar;
+    @FXML 
+    TextArea regras;
+   
 
     @FXML
     public void jogar(ActionEvent event) {
@@ -60,7 +64,8 @@ public class FXMLRegra_QualpalavraController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+         regras.setEditable(false);
+
     }
 
 }

@@ -51,7 +51,7 @@ public class Dao_Sortidas implements Dao<Sortidas> {
                     ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Sortidas contato = new Sortidas();
-                    contato.setId_sortida(rs.getInt("idSilabas"));
+                    //contato.setId_sortida(rs.getInt("idSilabas"));
                     contato.setNome_sortida(rs.getString("silaba"));
                     sort.add(contato);
                 }
