@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Qual_palavra_medio.FXMLMedioController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Qual_palavra_dificil.FXMLDificilController">
     <stylesheets>
         <URL value="@../Qual_palavra_facil/fxmlfacil.css" />
     </stylesheets>
@@ -20,7 +20,7 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Label fx:id="silaba_aparece1" layoutX="310.0" layoutY="108.0" prefHeight="38.0" prefWidth="52.0" textAlignment="CENTER" textFill="#110202">
+      <Label fx:id="silaba_aparece1" layoutX="297.0" layoutY="108.0" prefHeight="38.0" prefWidth="75.0" textAlignment="CENTER" textFill="#110202">
          <font>
             <Font size="22.0" />
          </font>
@@ -34,7 +34,7 @@
       <TextField fx:id="preencher2" layoutX="394.0" layoutY="108.0" prefHeight="38.0" prefWidth="52.0" />
       <TextField fx:id="preencher3" layoutX="222.0" layoutY="168.0" prefHeight="38.0" prefWidth="52.0" />
       <TextField fx:id="preencher4" layoutX="393.0" layoutY="168.0" prefHeight="38.0" prefWidth="52.0" />
-      <Label fx:id="silaba_aparece2" layoutX="310.0" layoutY="168.0" prefHeight="38.0" prefWidth="52.0" textAlignment="CENTER" textFill="#110202">
+      <Label fx:id="silaba_aparece2" layoutX="301.0" layoutY="168.0" prefHeight="38.0" prefWidth="75.0" textAlignment="CENTER" textFill="#110202">
          <font>
             <Font size="22.0" />
          </font>

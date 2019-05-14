@@ -57,7 +57,6 @@ public class Dao_Medio implements Dao<Medio> {
                     ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Medio contato = new Medio();
-                    contato.setId_medio(rs.getInt("id_media"));
                     contato.setNome_palavra_medio(rs.getString("nome_palavra_media"));
                     palavra_m.add(contato);
                 }

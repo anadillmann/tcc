@@ -52,7 +52,6 @@ public class Dao_Dificil implements Dao<Dificil> {
                     ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Dificil contato = new Dificil();
-                    contato.setId_dificil(rs.getInt("id_dificil"));
                     contato.setNome_palavra_dificil(rs.getString("nome_palavra_dificil"));
                     palavra_d.add(contato);
                 }

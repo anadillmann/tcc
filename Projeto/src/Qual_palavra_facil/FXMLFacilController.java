@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 public class FXMLFacilController implements Initializable {
 
-    public String silabas[];
+    public String falta;
 
     @FXML
     ImageView imagem_facil;
@@ -37,6 +37,43 @@ public class FXMLFacilController implements Initializable {
     Button opcao1, opcao2, opcao3, voltar;
     @FXML
     ProgressBar progresso;
+
+    @FXML
+    public void verefica_silaba(ActionEvent event) {
+        opcao1.setOnAction(click -> {
+            if (opcao1.getText().equals(falta)) {
+                System.out.println("Correta");
+                preencher.setText(opcao1.getText());
+            } else {
+                System.out.println("Incorreta");
+                preencher.setText(falta);
+            }
+        }
+        );
+        
+        opcao2.setOnAction(click -> {
+            if (opcao2.getText().equals(falta)) {
+                System.out.println("Correta");
+                preencher.setText(opcao2.getText());
+            } else {
+                System.out.println("Incorreta");
+                preencher.setText(falta);
+            }
+        }
+        );
+
+        opcao3.setOnAction(click -> {
+            if (opcao3.getText().equals(falta)) {
+                System.out.println("Correta");
+                preencher.setText(opcao3.getText());
+            } else {
+                System.out.println("Incorreta");
+                preencher.setText(falta);
+            }
+        }
+        );
+
+    }
 
     @FXML
     public void voltar(ActionEvent event) {
@@ -63,21 +100,20 @@ public class FXMLFacilController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         preencher.setEditable(false);
         Dao_Facil a = new Dao_Facil();
-        List<Facil> palavras = a.pesquisaTodos();// Não ta vindo nada aqui
+        List<Facil> palavras = a.pesquisaTodos();
 
         Collections.shuffle(palavras);// Método usado para embaralhar a lista
         Random r = new Random();//botões
 
-        silabas = palavras.get(r.nextInt(palavras.size())).getNome_palavra_facil().split("-");
-        silaba_aparece.setText(silabas[0]); //Atribui ao label a primeira silaba da palavra que vai aparecer
+        String silabas[] = palavras.get(r.nextInt(palavras.size())).getNome_palavra_facil().split("-");
+        silaba_aparece.setText(silabas[0]);//Atribui ao label a primeira silaba da palavra que vai aparecer
+        falta = silabas[1];
 
         Dao_Sortidas s = new Dao_Sortidas();
         List<Sortidas> sortidas = s.pesquisaTodos();
         Collections.shuffle(sortidas);// Método usado para embaralhar a lista        
 
         int n = r.nextInt(3) + 1;
-        int b = r.nextInt(sortidas.size());
-
         switch (n) {
             case 1:
                 opcao1.setText(silabas[1]);
@@ -96,37 +132,6 @@ public class FXMLFacilController implements Initializable {
                 break;
 
         }
-        //verifica_silaba();
     }
 
-    @FXML
-    public void verefica_silaba() {
-
-        if (opcao1.isPressed()) {
-            if (opcao1.getText().equals(silabas[1])) {
-                System.out.println("Correta");
-            } else {
-                System.out.println("Incorreta");
-            }
-        } else {
-            if (opcao2.isPressed()) {
-                if (opcao2.getText().equals(silabas[1])) {
-                    System.out.println("Correta");
-                } else {
-                    System.out.println("Incorreta");
-                }
-
-            } else {
-                if (opcao3.isPressed()) {
-                    if (opcao3.getText().equals(silabas[1])) {
-                        System.out.println("Correta");
-                    } else {
-                        System.out.println("Incorreta");
-                    }
-                }
-
-            }
-
-        }
-    }
 }
