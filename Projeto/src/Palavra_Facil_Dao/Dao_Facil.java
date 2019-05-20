@@ -1,5 +1,6 @@
 package Palavra_Facil_Dao;
 
+import Conexao.Dao;
 import Conexao.Conexao_BD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -52,6 +53,7 @@ public class Dao_Facil implements Dao<Facil> {
                     ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Facil contato = new Facil();
+                    contato.setId_facil(rs.getInt("id_facil"));
                     contato.setNome_palavra_facil(rs.getString("nome_palavra_facil"));
                     palavra_f.add(contato);
                 }

@@ -6,6 +6,7 @@
 package Palavra_Medio_Dao;
 
 import Conexao.Conexao_BD;
+import Conexao.Dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,6 +58,7 @@ public class Dao_Medio implements Dao<Medio> {
                     ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Medio contato = new Medio();
+                    contato.setId_medio(rs.getInt("id_media"));
                     contato.setNome_palavra_medio(rs.getString("nome_palavra_media"));
                     palavra_m.add(contato);
                 }

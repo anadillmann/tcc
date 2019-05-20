@@ -1,6 +1,5 @@
-package Palavra_Medio_Dao;
+package Conexao;
 
-import Palavra_Facil_Dao.*;
 import java.util.List;
 
 public interface Dao<E> {

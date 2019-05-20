@@ -4,8 +4,8 @@ public class SQl_Constantes_Facil {
     
      public static final String INSERT = "insert into "
             + "Palavra_facil (id_facil, nome_palavra_facil) "
-            + "values (?,?)";
+            + "values (? ,?)";
     
-    public static final String SEARCH = "select nome_palavra_facil from Palavra_facil";  
+    public static final String SEARCH = "select * from Palavra_facil";  
    
 }

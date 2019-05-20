@@ -7,8 +7,8 @@ package Palavra_Dificil_Dao;
 public class SQL_Constantes_Dificil {
      public static final String INSERT = "insert into "
             + "Palavra_dificil (id_dificil, nome_palavra_dificil) "
-            + "values (?,?)";
+            + "values (?, ?)";
     
-    public static final String SEARCH = "select nome_palavra_dificil from Palavra_dificil"; 
+    public static final String SEARCH = "select * from Palavra_dificil"; 
     
 }

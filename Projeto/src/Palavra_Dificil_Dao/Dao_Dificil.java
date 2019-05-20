@@ -1,6 +1,7 @@
 package Palavra_Dificil_Dao;
 
 import Conexao.Conexao_BD;
+import Conexao.Dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,6 +53,7 @@ public class Dao_Dificil implements Dao<Dificil> {
                     ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Dificil contato = new Dificil();
+                    contato.setId_dificil(rs.getInt("id_dificil"));
                     contato.setNome_palavra_dificil(rs.getString("nome_palavra_dificil"));
                     palavra_d.add(contato);
                 }

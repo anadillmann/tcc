@@ -6,8 +6,10 @@ import Sortidas_Dao.Dao_Sortidas;
 import Sortidas_Dao.Sortidas;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,7 +18,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
@@ -38,42 +42,9 @@ public class FXMLFacilController implements Initializable {
     @FXML
     ProgressBar progresso;
 
-    @FXML
-    public void verefica_silaba(ActionEvent event) {
-        opcao1.setOnAction(click -> {
-            if (opcao1.getText().equals(falta)) {
-                System.out.println("Correta");
-                preencher.setText(opcao1.getText());
-            } else {
-                System.out.println("Incorreta");
-                preencher.setText(falta);
-            }
-        }
-        );
-        
-        opcao2.setOnAction(click -> {
-            if (opcao2.getText().equals(falta)) {
-                System.out.println("Correta");
-                preencher.setText(opcao2.getText());
-            } else {
-                System.out.println("Incorreta");
-                preencher.setText(falta);
-            }
-        }
-        );
-
-        opcao3.setOnAction(click -> {
-            if (opcao3.getText().equals(falta)) {
-                System.out.println("Correta");
-                preencher.setText(opcao3.getText());
-            } else {
-                System.out.println("Incorreta");
-                preencher.setText(falta);
-            }
-        }
-        );
-
-    }
+    private Button opcoes[];
+    private double progresso_percentagem;
+    private ArrayList<String> palavras_sorteadas;
 
     @FXML
     public void voltar(ActionEvent event) {
@@ -98,7 +69,79 @@ public class FXMLFacilController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        palavras_sorteadas = new ArrayList();
+        progresso_percentagem = 0.10;
+        progresso.setProgress(progresso_percentagem);
         preencher.setEditable(false);
+        String palavra = sorteia_palavra();
+
+        palavras_sorteadas.add(palavra);
+        opcoes = new Button[]{opcao1, opcao2, opcao3};
+
+        for (Button opcao : opcoes) {
+            opcao.setOnAction(click -> {
+                if (opcao.getText().equals(falta)) {
+                    progresso_percentagem += 0.10;
+                    progresso.setProgress(progresso_percentagem);
+                    System.out.println("Correta");
+                    preencher.setText(opcao.getText());
+                    if (progresso_percentagem >= 1) {
+
+                        Alert a = new Alert(Alert.AlertType.INFORMATION, ""
+                                + "Prabéns você conseguiu concluir a fase fácil!"
+                                + " Vamos para a fase média?",
+                                ButtonType.YES, ButtonType.NO);
+                        Optional<ButtonType> bt = a.showAndWait();
+                        if (bt.get() == ButtonType.YES) {
+                            ((Stage) progresso.getScene().getWindow()).close();
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_medio/FXMLMedio.fxml"));
+                                Parent root = loader.load();
+
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                stage.setScene(scene);
+                                stage.show();
+
+                            } catch (IOException ex) {
+                                System.out.println("Erro ao abrir janela");
+                                ex.printStackTrace();
+                            }
+
+                        } else {
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
+                                Parent root = loader.load();
+
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                stage.setScene(scene);
+                                stage.show();
+
+                            } catch (IOException ex) {
+                                System.out.println("Erro ao abrir janela");
+                                ex.printStackTrace();
+                            }
+                        }
+                    } else {
+                        String nova_palavra = "";
+                        do {
+                            nova_palavra = sorteia_palavra();
+                        } while (palavras_sorteadas.equals(nova_palavra));
+                    }
+                } else {
+                    Alert a = new Alert(Alert.AlertType.ERROR);
+                    a.setTitle("ERRO");
+                    a.setContentText("Ops! Sua resposta não está correta, tente de novo");
+                    a.showAndWait();
+                    System.out.println("Incorreta");
+                }
+            });
+        }
+    }
+
+    private String sorteia_palavra() {
+        preencher.setText("");
         Dao_Facil a = new Dao_Facil();
         List<Facil> palavras = a.pesquisaTodos();
 
@@ -111,7 +154,7 @@ public class FXMLFacilController implements Initializable {
 
         Dao_Sortidas s = new Dao_Sortidas();
         List<Sortidas> sortidas = s.pesquisaTodos();
-        Collections.shuffle(sortidas);// Método usado para embaralhar a lista        
+        Collections.shuffle(sortidas);// Método usado para embaralhar a lista
 
         int n = r.nextInt(3) + 1;
         switch (n) {
@@ -132,6 +175,7 @@ public class FXMLFacilController implements Initializable {
                 break;
 
         }
+        return silabas[0] + "-" + silabas[1];
     }
 
 }

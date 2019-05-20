@@ -1,6 +1,7 @@
 package Sortidas_Dao;
 
 import Conexao.Conexao_BD;
+import Conexao.Dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
