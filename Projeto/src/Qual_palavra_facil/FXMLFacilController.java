@@ -1,11 +1,19 @@
 package Qual_palavra_facil;
 
+import Imagens.Dao_Imagens;
+import Imagens.Imagens;
 import Palavra_Facil_Dao.Dao_Facil;
 import Palavra_Facil_Dao.Facil;
 import Sortidas_Dao.Dao_Sortidas;
 import Sortidas_Dao.Sortidas;
+import com.sun.javafx.tk.Toolkit;
+import static com.sun.javafx.tk.Toolkit.getToolkit;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -137,6 +145,19 @@ public class FXMLFacilController implements Initializable {
                     System.out.println("Incorreta");
                 }
             });
+        }
+        
+                // carregar as imagens
+        
+       
+       Dao_Imagens i = new Dao_Imagens();
+       List<Imagens> img = i.pesquisaTodos();
+       for (int j = 0; j < img.size(); j++) {
+            Blob img_bytes  = img.get(j).getImagem();
+            System.out.println(img_bytes);
+            //byte [] bin = img_bytes.getBytes(1, (int)img_bytes.length());
+            //ByteArrayInputStream stream = new ByteArrayInputStream (bin);
+            
         }
     }
 

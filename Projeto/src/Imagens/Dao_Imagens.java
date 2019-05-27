@@ -47,7 +47,7 @@ public class Dao_Imagens implements Dao<Imagens> {
 
     @Override
     public List<Imagens> pesquisaTodos() {
-        List<Imagens> palavra_d = new ArrayList();
+        List<Imagens> img = new ArrayList();
         try {
             try (Connection connection = Conexao_BD.getConnection();
                     PreparedStatement stmt = connection.prepareStatement(SQL_Constantes_Imagem.SEARCH);
@@ -57,13 +57,13 @@ public class Dao_Imagens implements Dao<Imagens> {
                     contato.setIdImagens(rs.getInt("idImagens"));
                     contato.setNome(rs.getString("nome"));
                     contato.setImagem(rs.getBlob("imagem"));
-                    palavra_d.add(contato);
+                    img.add(contato);
                 }
             }
         } catch (SQLException e) {
             System.out.println("Erro ao pesquisar por palavras dificeis no banco de dados!");
         }
-        return palavra_d;
+        return img;
     }
 
 }

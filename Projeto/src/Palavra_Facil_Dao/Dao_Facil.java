@@ -55,6 +55,7 @@ public class Dao_Facil implements Dao<Facil> {
                     Facil contato = new Facil();
                     contato.setId_facil(rs.getInt("id_facil"));
                     contato.setNome_palavra_facil(rs.getString("nome_palavra_facil"));
+                    //rs.getBlob(string)
                     palavra_f.add(contato);
                 }
             }

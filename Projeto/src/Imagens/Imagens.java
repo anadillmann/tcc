@@ -1,6 +1,7 @@
 package Imagens;
 
 import java.sql.Blob;
+import java.util.Objects;
 
 /**
  *
@@ -50,6 +51,40 @@ public class Imagens {
     public String toString() {
         return "idImagens=" + idImagens + ", nome=" + nome + ", imagem=" + imagem;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + this.idImagens;
+        hash = 41 * hash + Objects.hashCode(this.nome);
+        hash = 41 * hash + Objects.hashCode(this.imagem);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Imagens other = (Imagens) obj;
+        if (this.idImagens != other.idImagens) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.imagem, other.imagem)) {
+            return false;
+        }
+        return true;
+    }
+    
     
     
     

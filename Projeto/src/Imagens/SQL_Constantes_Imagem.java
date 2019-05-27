@@ -7,7 +7,7 @@ package Imagens;
 public class SQL_Constantes_Imagem {
          public static final String INSERT = "insert into "
             + "Imagens (idImagens, nome, imagem) "
-            + "values (?,?,?)";
+            + "values (null,?,?)";
     
-    public static final String SEARCH = "select imagem from Imagens"; 
+    public static final String SEARCH = "select * from Imagens"; 
 }
