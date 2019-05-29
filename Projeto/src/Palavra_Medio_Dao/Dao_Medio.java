@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Palavra_Medio_Dao;
 
 import Conexao.Conexao_BD;
@@ -21,7 +16,7 @@ import java.util.List;
 public class Dao_Medio implements Dao<Medio> {
 
     @Override
-    public boolean adiciona(Medio palavra_m) {
+    public void adiciona(Medio palavra_m) {
         String sql = SQL_Constantes_Medio.INSERT;
         try {
             try (Connection connection = Conexao_BD.getConnection();
@@ -32,11 +27,10 @@ public class Dao_Medio implements Dao<Medio> {
             }
         } catch (SQLException e) {
             System.out.println("Erro ao inserir dados na tabela Palavra Medio!");
-            return false;
         }
-        return true;
     }
 
+    /*
     @Override
     public boolean pesquisa(Medio palavra_m) {
         List<Medio> todos = pesquisaTodos();
@@ -48,6 +42,7 @@ public class Dao_Medio implements Dao<Medio> {
         }
         return false;
     }
+*/
 
     @Override
     public List<Medio> pesquisaTodos() {
@@ -67,6 +62,11 @@ public class Dao_Medio implements Dao<Medio> {
             System.out.println("Erro ao pesquisar por palavras medias no banco de dados!");
         }
         return palavra_m;
+    }
+
+    @Override
+    public boolean pesquisa(Medio m) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

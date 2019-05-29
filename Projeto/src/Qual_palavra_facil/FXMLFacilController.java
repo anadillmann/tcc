@@ -32,6 +32,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -40,7 +41,7 @@ public class FXMLFacilController implements Initializable {
     public String falta;
 
     @FXML
-    ImageView imagem_facil;
+    ImageView imagem_facil, desenho;
     @FXML
     Label silaba_aparece;
     @FXML
@@ -89,9 +90,15 @@ public class FXMLFacilController implements Initializable {
         for (Button opcao : opcoes) {
             opcao.setOnAction(click -> {
                 if (opcao.getText().equals(falta)) {
+                    //desenho
                     progresso_percentagem += 0.10;
                     progresso.setProgress(progresso_percentagem);
                     System.out.println("Correta");
+
+                    /*Dao_Imagens i = new Dao_Imagens();
+                    List<Imagens> img = i.pesquisaTodos();
+                    desenho.setImage(img.get(21).getImagem());
+                     */
                     preencher.setText(opcao.getText());
                     if (progresso_percentagem >= 1) {
 
@@ -133,9 +140,15 @@ public class FXMLFacilController implements Initializable {
                         }
                     } else {
                         String nova_palavra = "";
+                        boolean repetida = true;
                         do {
                             nova_palavra = sorteia_palavra();
-                        } while (palavras_sorteadas.equals(nova_palavra));
+
+                            if (!nova_palavra.equals(palavras_sorteadas)) {
+                                repetida = false;
+                            }
+                            
+                        } while (repetida);
                     }
                 } else {
                     Alert a = new Alert(Alert.AlertType.ERROR);
@@ -143,22 +156,16 @@ public class FXMLFacilController implements Initializable {
                     a.setContentText("Ops! Sua resposta não está correta, tente de novo");
                     a.showAndWait();
                     System.out.println("Incorreta");
+
+                    //carregar iamgem do monstrinho triste
                 }
             });
         }
-        
-                // carregar as imagens
-        
-       
-       Dao_Imagens i = new Dao_Imagens();
-       List<Imagens> img = i.pesquisaTodos();
-       for (int j = 0; j < img.size(); j++) {
-            Blob img_bytes  = img.get(j).getImagem();
-            System.out.println(img_bytes);
-            //byte [] bin = img_bytes.getBytes(1, (int)img_bytes.length());
-            //ByteArrayInputStream stream = new ByteArrayInputStream (bin);
-            
-        }
+
+        // carregar as imagens
+        //Dao_Imagens i = new Dao_Imagens();
+        //List<Imagens> img = i.pesquisaTodos();
+        //teste.setImage(img.get(1).getImagem());
     }
 
     private String sorteia_palavra() {
@@ -169,9 +176,17 @@ public class FXMLFacilController implements Initializable {
         Collections.shuffle(palavras);// Método usado para embaralhar a lista
         Random r = new Random();//botões
 
-        String silabas[] = palavras.get(r.nextInt(palavras.size())).getNome_palavra_facil().split("-");
+        int i = r.nextInt(palavras.size());
+
+        String silabas[] = palavras.get(i).getNome_palavra_facil().split("-");
+        int id = palavras.get(i).getId_facil();
+
         silaba_aparece.setText(silabas[0]);//Atribui ao label a primeira silaba da palavra que vai aparecer
         falta = silabas[1];
+
+        Dao_Imagens c = new Dao_Imagens();
+        Imagens img = c.pesquisa_facil(id);
+        imagem_facil.setImage(img.getImagem());
 
         Dao_Sortidas s = new Dao_Sortidas();
         List<Sortidas> sortidas = s.pesquisaTodos();

@@ -1,7 +1,6 @@
 package Imagens;
-
-import java.sql.Blob;
 import java.util.Objects;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -11,9 +10,9 @@ public class Imagens {
     
     private int idImagens;
     private String nome;
-    private Blob imagem;
+    private Image imagem;
 
-    public Imagens(int idImagens, String nome, Blob imagem) {
+    public Imagens(int idImagens, String nome, Image imagem) {
         this.idImagens = idImagens;
         this.nome = nome;
         this.imagem = imagem;
@@ -39,11 +38,11 @@ public class Imagens {
         this.nome = nome;
     }
 
-    public Blob getImagem() {
+    public Image getImagem() {
         return imagem;
     }
 
-    public void setImagem(Blob imagem) {
+    public void setImagem(Image imagem) {
         this.imagem = imagem;
     }
 

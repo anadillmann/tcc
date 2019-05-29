@@ -16,7 +16,7 @@ import java.util.List;
 public class Dao_Facil implements Dao<Facil> {
 
     @Override
-    public boolean adiciona(Facil palavra_f) {
+    public void adiciona(Facil palavra_f) {
         String sql = SQl_Constantes_Facil.INSERT;
         try {
             try (Connection connection = Conexao_BD.getConnection();
@@ -27,9 +27,7 @@ public class Dao_Facil implements Dao<Facil> {
             }
         } catch (SQLException e) {
             System.out.println("Erro ao inserir dados na tabela Palavra Facil!");
-            return false;
         }
-        return true;
     }
 
     @Override

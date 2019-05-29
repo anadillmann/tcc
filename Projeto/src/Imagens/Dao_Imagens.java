@@ -2,6 +2,8 @@ package Imagens;
 
 import Conexao.Conexao_BD;
 import Conexao.Dao;
+import java.io.IOException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,34 +17,79 @@ import java.util.List;
  */
 public class Dao_Imagens implements Dao<Imagens> {
 
-    @Override
-    public boolean adiciona(Imagens img) {
-        String sql = SQL_Constantes_Imagem.INSERT;
-        try {
-            try (Connection connection = Conexao_BD.getConnection();
-                    PreparedStatement stmt = connection.prepareStatement(sql)) {
-                stmt.setString(1, null);
-                stmt.setString(2, img.getNome());
-                stmt.setBlob(3, img.getImagem());
-                stmt.execute();
+    public Imagens pesquisa_facil(int idFacil) {
+        Imagens contato = new Imagens();
+        try (Connection connection = Conexao_BD.getConnection();
+                    PreparedStatement stmt = connection.prepareStatement(SQL_Constantes_Imagem.SEARCH_FACIL)) {
+            
+            stmt.setInt(1, idFacil);    
+            ResultSet rs = stmt.executeQuery();
+            System.out.println(rs);
+            rs.next();
+
+            contato.setIdImagens(rs.getInt("idImagens"));
+            contato.setNome(rs.getString("nome"));
+            Blob blob = rs.getBlob("imagem");
+            
+            try {
+                contato.setImagem(ConverterImagemByte.paraImagem(
+                        blob.getBytes(1, (int) blob.length())));
+            } catch (ClassNotFoundException | IOException ex) {
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir imagem!");
-            return false;
+            e.printStackTrace();
+            System.out.println("Erro ao pesquisar por imagens");
         }
-        return true;
+        return contato;
     }
+    
+     public Imagens pesquisa_medio(int idMedio) {
+        Imagens contato = new Imagens();
+        try (Connection connection = Conexao_BD.getConnection();
+                    PreparedStatement stmt = connection.prepareStatement(SQL_Constantes_Imagem.SEARCH_MEDIO)) {
+            
+            stmt.setInt(1, idMedio);    
+            ResultSet rs = stmt.executeQuery();
+            System.out.println(rs);
+            rs.next();
 
-    @Override
-    public boolean pesquisa(Imagens img) {
-        List<Imagens> todos = pesquisaTodos();
-
-        for (Imagens cc : todos) {
-            if (((Imagens) cc).equals(img)) {
-                return true;
+            contato.setIdImagens(rs.getInt("idImagens"));
+            contato.setNome(rs.getString("nome"));
+            Blob blob = rs.getBlob("imagem");
+            
+            try {
+                contato.setImagem(ConverterImagemByte.paraImagem(
+                        blob.getBytes(1, (int) blob.length())));
+            } catch (ClassNotFoundException | IOException ex) {
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao pesquisar por imagens");
         }
-        return false;
+        return contato;
+    }
+    
+    @Override
+    public void adiciona(Imagens img) {
+        String sql = SQL_Constantes_Imagem.INSERT;
+        try (Connection connection = Conexao_BD.getConnection();
+                    PreparedStatement stmt = connection.prepareStatement(sql)) {
+                stmt.setString(1, img.getNome());
+                Blob blob = connection.createBlob();
+                byte[] arr;
+                try {
+                    arr = ConverterImagemByte.paraByteArray(img.getImagem());
+                    blob.setBytes(1, arr);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                stmt.setBlob(2, blob);
+                stmt.execute();
+                connection.close();
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir dados na tabela contato!");
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -50,20 +97,31 @@ public class Dao_Imagens implements Dao<Imagens> {
         List<Imagens> img = new ArrayList();
         try {
             try (Connection connection = Conexao_BD.getConnection();
-                    PreparedStatement stmt = connection.prepareStatement(SQL_Constantes_Imagem.SEARCH);
+                    PreparedStatement stmt = connection.prepareStatement(SQL_Constantes_Imagem.SEARCH_ALL);
                     ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Imagens contato = new Imagens();
                     contato.setIdImagens(rs.getInt("idImagens"));
                     contato.setNome(rs.getString("nome"));
-                    contato.setImagem(rs.getBlob("imagem"));
+                    Blob blob = rs.getBlob("imagem");
+                    try {
+                        contato.setImagem(ConverterImagemByte.paraImagem(
+                                blob.getBytes(1, (int) blob.length())));
+                    } catch (ClassNotFoundException | IOException ex) {
+                    }
                     img.add(contato);
+
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao pesquisar por palavras dificeis no banco de dados!");
+            System.out.println("Erro ao pesquisar por imagens");
         }
         return img;
+    }
+
+    @Override
+    public boolean pesquisa(Imagens m) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

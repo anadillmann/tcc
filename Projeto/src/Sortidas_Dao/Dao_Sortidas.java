@@ -16,7 +16,7 @@ import java.util.List;
 public class Dao_Sortidas implements Dao<Sortidas> {
 
     @Override
-    public boolean adiciona(Sortidas sort) {
+    public void adiciona(Sortidas sort) {
         String sql = SQL_Constantes_Sortidas.INSERT;
         try {
             try (Connection connection = Conexao_BD.getConnection();
@@ -27,9 +27,7 @@ public class Dao_Sortidas implements Dao<Sortidas> {
             }
         } catch (SQLException e) {
             System.out.println("Erro ao inserir dados na tabela Sortidas!");
-            return false;
         }
-        return true;
     }
 
     @Override

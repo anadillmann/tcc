@@ -1,5 +1,7 @@
 package Qual_palavra_medio;
 
+import Imagens.Dao_Imagens;
+import Imagens.Imagens;
 import Palavra_Medio_Dao.Dao_Medio;
 import Palavra_Medio_Dao.Medio;
 import Sortidas_Dao.Dao_Sortidas;
@@ -59,11 +61,11 @@ public class FXMLMedioController implements Initializable {
         progresso_percentagem = 0.10;
         progresso.setProgress(progresso_percentagem);
         preenche = new TextField[]{preencher1, preencher2, preencher3, preencher4};
-        
+
         for (TextField t : preenche) {
             t.setEditable(false);
         }
-        
+
         opcoes = new Button[]{opcao1, opcao2, opcao3, opcao4, opcao5, opcao6};
         sortear_palavras();
 
@@ -167,17 +169,20 @@ public class FXMLMedioController implements Initializable {
         preencher4.setText("");
 
         List<Medio> palavras = dao.pesquisaTodos();
-        
+
         for (int i = 0; i < opcoes.length; i++) {
             Button op = opcoes[i];
 
             op.setText("");
         }
-        
+
         Collections.shuffle(palavras);// Método usado para embaralhar a lista
         Random r = new Random();//botões
 
-        silabas1 = palavras.get(r.nextInt(palavras.size())).getNome_palavra_medio().split("-");
+        int k = r.nextInt(palavras.size());
+        int j = r.nextInt(palavras.size());
+
+        silabas1 = palavras.get(k).getNome_palavra_medio().split("-");
         silaba_aparece1.setText(silabas1[1]);//Atribui ao label a primeira silaba da palavra que vai aparecer
         falta1 = silabas1[0];
         falta2 = silabas1[2];
@@ -186,7 +191,7 @@ public class FXMLMedioController implements Initializable {
         String concat1, concat2;
 
         do {
-            silabas2 = palavras.get(r.nextInt(palavras.size())).getNome_palavra_medio().split("-");
+            silabas2 = palavras.get(j).getNome_palavra_medio().split("-");
             concat1 = silabas1[0].concat(silabas1[1].concat(silabas1[2]));
             concat2 = silabas2[0].concat(silabas2[1].concat(silabas2[2]));
 
@@ -201,6 +206,17 @@ public class FXMLMedioController implements Initializable {
         silaba_aparece2.setText(silabas2[1]);//Atribui ao label a primeira silaba da palavra que vai aparecer
         falta3 = silabas2[0];
         falta4 = silabas2[2];
+        
+        
+        Dao_Imagens c = new Dao_Imagens();
+        
+        int id1 = palavras.get(k).getId_medio();
+        Imagens img = c.pesquisa_medio(id1);
+        imagem1.setImage(img.getImagem());
+
+        int id2 = palavras.get(j).getId_medio();
+        Imagens img1 = c.pesquisa_medio(id2);
+        imagem2.setImage(img1.getImagem());
 
         Dao_Sortidas s = new Dao_Sortidas();
         List<Sortidas> sortidas = s.pesquisaTodos();
