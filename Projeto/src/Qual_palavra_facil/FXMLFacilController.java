@@ -6,20 +6,16 @@ import Palavra_Facil_Dao.Dao_Facil;
 import Palavra_Facil_Dao.Facil;
 import Sortidas_Dao.Dao_Sortidas;
 import Sortidas_Dao.Sortidas;
-import com.sun.javafx.tk.Toolkit;
-import static com.sun.javafx.tk.Toolkit.getToolkit;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,7 +28,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -82,6 +77,7 @@ public class FXMLFacilController implements Initializable {
         progresso_percentagem = 0.10;
         progresso.setProgress(progresso_percentagem);
         preencher.setEditable(false);
+        desenho.setImage(null);
         String palavra = sorteia_palavra();
 
         palavras_sorteadas.add(palavra);
@@ -95,13 +91,19 @@ public class FXMLFacilController implements Initializable {
                     progresso.setProgress(progresso_percentagem);
                     System.out.println("Correta");
 
-                    /*Dao_Imagens i = new Dao_Imagens();
-                    List<Imagens> img = i.pesquisaTodos();
-                    desenho.setImage(img.get(21).getImagem());
-                     */
-                    preencher.setText(opcao.getText());
-                    if (progresso_percentagem >= 1) {
+                    try {
+                        
+                        Dao_Imagens k = new Dao_Imagens();
+                        List<Imagens> img = k.pesquisaTodos();
+                        preencher.setText(opcao.getText());
+                        desenho.setImage(img.get(63).getImagem());
+                        Thread.sleep(0, 3000);
+                        
+                    } catch (InterruptedException ex) {
+                        
+                    }
 
+                    if (progresso_percentagem >= 1) {
                         Alert a = new Alert(Alert.AlertType.INFORMATION, ""
                                 + "Prabéns você conseguiu concluir a fase fácil!"
                                 + " Vamos para a fase média?",
@@ -147,9 +149,10 @@ public class FXMLFacilController implements Initializable {
                             if (!nova_palavra.equals(palavras_sorteadas)) {
                                 repetida = false;
                             }
-                            
+
                         } while (repetida);
                     }
+
                 } else {
                     Alert a = new Alert(Alert.AlertType.ERROR);
                     a.setTitle("ERRO");
@@ -157,15 +160,14 @@ public class FXMLFacilController implements Initializable {
                     a.showAndWait();
                     System.out.println("Incorreta");
 
+                    Dao_Imagens l = new Dao_Imagens();
+                    List<Imagens> img = l.pesquisaTodos();
+                    desenho.setImage(img.get(64).getImagem());
+
                     //carregar iamgem do monstrinho triste
                 }
             });
         }
-
-        // carregar as imagens
-        //Dao_Imagens i = new Dao_Imagens();
-        //List<Imagens> img = i.pesquisaTodos();
-        //teste.setImage(img.get(1).getImagem());
     }
 
     private String sorteia_palavra() {

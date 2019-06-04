@@ -18,11 +18,11 @@ public class FXMLRoleta_NivelController implements Initializable {
 
     @FXML
     public void facil() {
-
         facil.getScene().getWindow().hide();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Roleta_Facil/FXMLRoleta_Facil.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/Roleta_Facil/FXMLRoleta_Facil.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);

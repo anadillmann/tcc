@@ -1,5 +1,7 @@
 package Qual_palavra_dificil;
 
+import Imagens.Dao_Imagens;
+import Imagens.Imagens;
 import Palavra_Dificil_Dao.Dao_Dificil;
 import Palavra_Dificil_Dao.Dificil;
 import Sortidas_Dao.Dao_Sortidas;
@@ -24,7 +26,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -82,12 +83,12 @@ public class FXMLDificilController implements Initializable {
         progresso_percentagem = 0.10;
         progresso.setProgress(progresso_percentagem);
         preenche = new TextField[]{preencher1, preencher2, preencher3, preencher4};
-        
+
         for (TextField t : preenche) {
             t.setEditable(false);
         }
-        
-        opcoes = new Button[]{opcao1, opcao2, opcao3, opcao4, opcao5, 
+
+        opcoes = new Button[]{opcao1, opcao2, opcao3, opcao4, opcao5,
             opcao6, opcao7, opcao8, opcao9};
         sortear_palavras();
 
@@ -163,24 +164,27 @@ public class FXMLDificilController implements Initializable {
     }
 
     private void sortear_palavras() {
-incorretos = new ArrayList();
+        incorretos = new ArrayList();
         preencher1.setText("");
         preencher2.setText("");
         preencher3.setText("");
         preencher4.setText("");
 
         List<Dificil> palavras = dao.pesquisaTodos();
-        
+
         for (int i = 0; i < opcoes.length; i++) {
             Button op = opcoes[i];
 
             op.setText("");
         }
-        
+
         Collections.shuffle(palavras);// Método usado para embaralhar a lista
         Random r = new Random();//botões
 
-        silabas1 = palavras.get(r.nextInt(palavras.size())).getNome_palavra_dificil().split("-");
+        int k = r.nextInt(palavras.size());
+        int j = r.nextInt(palavras.size());
+
+        silabas1 = palavras.get(k).getNome_palavra_dificil().split("-");
         silaba_aparece1.setText(silabas1[1]);//Atribui ao label a primeira silaba da palavra que vai aparecer
         falta1 = silabas1[0];
         falta2 = silabas1[2];
@@ -189,7 +193,7 @@ incorretos = new ArrayList();
         String concat1, concat2;
 
         do {
-            silabas2 = palavras.get(r.nextInt(palavras.size())).getNome_palavra_dificil().split("-");
+            silabas2 = palavras.get(j).getNome_palavra_dificil().split("-");
             concat1 = silabas1[0].concat(silabas1[1].concat(silabas1[2]));
             concat2 = silabas2[0].concat(silabas2[1].concat(silabas2[2]));
 
@@ -204,6 +208,16 @@ incorretos = new ArrayList();
         silaba_aparece2.setText(silabas2[1]);//Atribui ao label a primeira silaba da palavra que vai aparecer
         falta3 = silabas2[0];
         falta4 = silabas2[2];
+
+        Dao_Imagens c = new Dao_Imagens();
+
+        int id1 = palavras.get(k).getId_dificil();
+        Imagens img = c.pesquisa_dificil(id1);
+        imagem1.setImage(img.getImagem());
+
+        int id2 = palavras.get(j).getId_dificil();
+        Imagens img1 = c.pesquisa_dificil(id2);
+        imagem2.setImage(img1.getImagem());
 
         Dao_Sortidas s = new Dao_Sortidas();
         List<Sortidas> sortidas = s.pesquisaTodos();

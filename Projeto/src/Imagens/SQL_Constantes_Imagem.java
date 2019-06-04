@@ -20,5 +20,10 @@ public class SQL_Constantes_Imagem {
             + "where idImagens = Imagens_idImagens AND "
             + "id_media = Palavra_media_id_media AND Palavra_media_id_media = ?";
 
+    public static final String SEARCH_DIFICIL = "select idImagens, nome, imagem "
+            + "FROM Imagens join palavra_dificil_has_imagens join palavra_dificil "
+            + "where idImagens = Imagens_idImagens AND "
+            + "id_dificil = Palavra_dificil_id_dificil AND Palavra_dificil_id_dificil = ?";
+
     public static final String SEARCH_ALL = "SELECT * FROM Imagens";
 }

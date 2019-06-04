@@ -11,8 +11,8 @@ public class MainImagens extends Application {
     public void start(Stage stage) throws Exception {
         Dao_Imagens i = new Dao_Imagens();
 
-        Imagens c = new Imagens(1, "Arvore",
-                new Image("imagem/arvore.png"));
+        Imagens c = new Imagens(1, "Monstro Triste",
+                new Image("imagem/monstro_triste.png"));
         i.adiciona(c);
         
         
