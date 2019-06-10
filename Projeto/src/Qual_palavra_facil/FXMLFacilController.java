@@ -14,9 +14,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +31,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class FXMLFacilController implements Initializable {
 
@@ -49,30 +51,12 @@ public class FXMLFacilController implements Initializable {
     private Button opcoes[];
     private double progresso_percentagem;
     private ArrayList<String> palavras_sorteadas;
-
-    @FXML
-    public void voltar(ActionEvent event) {
-
-        voltar.getScene().getWindow().hide();
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_nivel/FXMLNivel.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException ex) {
-            System.out.println("Erro ao abrir janela");
-            ex.printStackTrace();
-        }
-
-    }
+    private List<Imagens> img;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Dao_Imagens k = new Dao_Imagens();
+        img = k.pesquisaTodos();
         palavras_sorteadas = new ArrayList();
         progresso_percentagem = 0.10;
         progresso.setProgress(progresso_percentagem);
@@ -86,85 +70,83 @@ public class FXMLFacilController implements Initializable {
         for (Button opcao : opcoes) {
             opcao.setOnAction(click -> {
                 if (opcao.getText().equals(falta)) {
-                    //desenho
                     progresso_percentagem += 0.10;
                     progresso.setProgress(progresso_percentagem);
-                    System.out.println("Correta");
+                    preencher.setText(opcao.getText());
+                    desenho.setImage(img.get(63).getImagem());
+                    Timeline animacao = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            desenho.setImage(null);
+                            if (progresso_percentagem >= 1) {
+                                Alert a = new Alert(Alert.AlertType.INFORMATION, ""
+                                        + "Prabéns você conseguiu concluir a fase fácil!"
+                                        + " Vamos para a fase média?",
+                                        ButtonType.YES, ButtonType.NO);
+                                Optional<ButtonType> bt = a.showAndWait();
+                                if (bt.get() == ButtonType.YES) {
+                                    ((Stage) progresso.getScene().getWindow()).close();
+                                    try {
+                                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_medio/FXMLMedio.fxml"));
+                                        Parent root = loader.load();
 
-                    try {
-                        
-                        Dao_Imagens k = new Dao_Imagens();
-                        List<Imagens> img = k.pesquisaTodos();
-                        preencher.setText(opcao.getText());
-                        desenho.setImage(img.get(63).getImagem());
-                        Thread.sleep(0, 3000);
-                        
-                    } catch (InterruptedException ex) {
-                        
-                    }
+                                        Scene scene = new Scene(root);
+                                        Stage stage = new Stage();
+                                        stage.setScene(scene);
+                                        stage.show();
 
-                    if (progresso_percentagem >= 1) {
-                        Alert a = new Alert(Alert.AlertType.INFORMATION, ""
-                                + "Prabéns você conseguiu concluir a fase fácil!"
-                                + " Vamos para a fase média?",
-                                ButtonType.YES, ButtonType.NO);
-                        Optional<ButtonType> bt = a.showAndWait();
-                        if (bt.get() == ButtonType.YES) {
-                            ((Stage) progresso.getScene().getWindow()).close();
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_medio/FXMLMedio.fxml"));
-                                Parent root = loader.load();
+                                    } catch (IOException ex) {
+                                        System.out.println("Erro ao abrir janela");
+                                        ex.printStackTrace();
+                                    }
 
-                                Scene scene = new Scene(root);
-                                Stage stage = new Stage();
-                                stage.setScene(scene);
-                                stage.show();
+                                } else {
+                                    try {
+                                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
+                                        Parent root = loader.load();
 
-                            } catch (IOException ex) {
-                                System.out.println("Erro ao abrir janela");
-                                ex.printStackTrace();
-                            }
+                                        Scene scene = new Scene(root);
+                                        Stage stage = new Stage();
+                                        stage.setScene(scene);
+                                        stage.show();
 
-                        } else {
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
-                                Parent root = loader.load();
+                                    } catch (IOException ex) {
+                                        System.out.println("Erro ao abrir janela");
+                                        ex.printStackTrace();
+                                    }
+                                }
+                            } else {
+                                String nova_palavra = "";
+                                boolean repetida = true;
+                                do {
+                                    nova_palavra = sorteia_palavra();
 
-                                Scene scene = new Scene(root);
-                                Stage stage = new Stage();
-                                stage.setScene(scene);
-                                stage.show();
+                                    if (!nova_palavra.equals(palavras_sorteadas)) {
+                                        repetida = false;
+                                    }
 
-                            } catch (IOException ex) {
-                                System.out.println("Erro ao abrir janela");
-                                ex.printStackTrace();
+                                } while (repetida);
                             }
                         }
-                    } else {
-                        String nova_palavra = "";
-                        boolean repetida = true;
-                        do {
-                            nova_palavra = sorteia_palavra();
-
-                            if (!nova_palavra.equals(palavras_sorteadas)) {
-                                repetida = false;
-                            }
-
-                        } while (repetida);
-                    }
-
+                    }));
+                    //animacao.setCycleCount(Timeline.INDEFINITE);
+                    animacao.play();
+                    
                 } else {
-                    Alert a = new Alert(Alert.AlertType.ERROR);
-                    a.setTitle("ERRO");
-                    a.setContentText("Ops! Sua resposta não está correta, tente de novo");
-                    a.showAndWait();
-                    System.out.println("Incorreta");
-
-                    Dao_Imagens l = new Dao_Imagens();
-                    List<Imagens> img = l.pesquisaTodos();
                     desenho.setImage(img.get(64).getImagem());
+                    Timeline animacao2 = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            desenho.setImage(null);
+                            Alert a = new Alert(Alert.AlertType.ERROR);
+                            a.setTitle("ERRO");
+                            a.setContentText("Ops! Sua resposta não está correta, tente de novo");
+                            a.show();
+                            System.out.println("Incorreta");
+                        }
 
-                    //carregar iamgem do monstrinho triste
+                    }));
+                    animacao2.play();
                 }
             });
         }
@@ -214,6 +196,28 @@ public class FXMLFacilController implements Initializable {
 
         }
         return silabas[0] + "-" + silabas[1];
+    }
+    
+    
+    @FXML
+    public void voltar(ActionEvent event) {
+
+        voltar.getScene().getWindow().hide();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_nivel/FXMLNivel.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+            System.out.println("Erro ao abrir janela");
+            ex.printStackTrace();
+        }
+
     }
 
 }

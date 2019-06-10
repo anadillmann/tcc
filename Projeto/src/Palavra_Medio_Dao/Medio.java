@@ -1,5 +1,7 @@
 package Palavra_Medio_Dao;
 
+import java.util.Objects;
+
 /**
  *
  * @author anadi
@@ -37,6 +39,35 @@ public class Medio {
     @Override
     public String toString() {
         return "id_medio=" + id_medio + ", nome_palavra_medio=" + nome_palavra_medio;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + this.id_medio;
+        hash = 83 * hash + Objects.hashCode(this.nome_palavra_medio);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Medio other = (Medio) obj;
+        if (this.id_medio != other.id_medio) {
+            return false;
+        }
+        if (!Objects.equals(this.nome_palavra_medio, other.nome_palavra_medio)) {
+            return false;
+        }
+        return true;
     }
     
     

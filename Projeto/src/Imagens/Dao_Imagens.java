@@ -21,7 +21,6 @@ public class Dao_Imagens implements Dao<Imagens> {
         Imagens contato = new Imagens();
         try (Connection connection = Conexao_BD.getConnection();
                 PreparedStatement stmt = connection.prepareStatement(SQL_Constantes_Imagem.SEARCH_FACIL)) {
-
             stmt.setInt(1, idFacil);
             ResultSet rs = stmt.executeQuery();
             System.out.println(rs);

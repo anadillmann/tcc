@@ -14,7 +14,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,11 +31,12 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class FXMLMedioController implements Initializable {
 
     @FXML
-    ImageView imagem1, imagem2;
+    ImageView imagem1, imagem2, desenho;
     @FXML
     Label silaba_aparece1, silaba_aparece2;
     @FXML
@@ -49,18 +53,24 @@ public class FXMLMedioController implements Initializable {
     private ArrayList<String> palavras_sorteadas;
     private double progresso_percentagem;
     private int cont = 0;
+    private List<Medio> palavras;
+    private Dao_Imagens dao_imagens;
 
     public String falta1, falta2, falta3, falta4;
     public String silabas1[], silabas2[];
     private ArrayList<Button> incorretos;
+    private List<Imagens> img;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dao = new Dao_Medio();
+        dao_imagens = new Dao_Imagens();
         palavras_sorteadas = new ArrayList();
         progresso_percentagem = 0.10;
         progresso.setProgress(progresso_percentagem);
         preenche = new TextField[]{preencher1, preencher2, preencher3, preencher4};
+
+        palavras = dao.pesquisaTodos();
 
         for (TextField t : preenche) {
             t.setEditable(false);
@@ -77,63 +87,85 @@ public class FXMLMedioController implements Initializable {
                         if (opcao.getText().equals(faltas[i])) {
                             cont++;
                             preenche[i].setText(faltas[i]);
-                            opcao.setDisable(true);
                             if (cont == 4) {
-                                progresso_percentagem += 0.10;
-                                progresso.setProgress(progresso_percentagem);
-                                System.out.println("Correta");
-                                if (progresso_percentagem >= 1) {
-                                    Alert a = new Alert(Alert.AlertType.INFORMATION, ""
-                                            + "Prabéns você conseguiu concluir a fase fácil!"
-                                            + " Vamos para a fase média?",
-                                            ButtonType.YES, ButtonType.NO);
-                                    Optional<ButtonType> bt = a.showAndWait();
-                                    if (bt.get() == ButtonType.YES) {
-                                        ((Stage) progresso.getScene().getWindow()).close();
-                                        try {
-                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_dificil/FXMLDificilController"));
-                                            Parent root = loader.load();
-                                            Scene scene = new Scene(root);
-                                            Stage stage = new Stage();
-                                            stage.setScene(scene);
-                                            stage.show();
+                                
+                                ///ERROOOOOOO
+                                
+                                System.out.println(img.get(63).getNome());
+                                desenho.setImage(img.get(63).getImagem());
+                                Timeline animacao = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+                                    @Override
+                                    public void handle(ActionEvent event) {
+                                        desenho.setImage(null);
+                                        progresso_percentagem += 0.10;
+                                        progresso.setProgress(progresso_percentagem);
+                                        System.out.println("Correta");
+                                        if (progresso_percentagem >= 1) {
+                                            Alert a = new Alert(Alert.AlertType.INFORMATION, ""
+                                                    + "Prabéns você conseguiu concluir a fase fácil!"
+                                                    + " Vamos para a fase média?",
+                                                    ButtonType.YES, ButtonType.NO);
+                                            a.setHeaderText(obtemPalavrasCertas());
+                                            Optional<ButtonType> bt = a.showAndWait();
+                                            if (bt.get() == ButtonType.YES) {
+                                                ((Stage) progresso.getScene().getWindow()).close();
+                                                try {
+                                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_dificil/FXMLDificilController"));
+                                                    Parent root = loader.load();
+                                                    Scene scene = new Scene(root);
+                                                    Stage stage = new Stage();
+                                                    stage.setScene(scene);
+                                                    stage.show();
 
-                                        } catch (IOException ex) {
-                                            System.out.println("Erro ao abrir janela");
-                                            ex.printStackTrace();
+                                                } catch (IOException ex) {
+                                                    System.out.println("Erro ao abrir janela");
+                                                    ex.printStackTrace();
+                                                }
+
+                                            } else {
+                                                try {
+                                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
+                                                    Parent root = loader.load();
+
+                                                    Scene scene = new Scene(root);
+                                                    Stage stage = new Stage();
+                                                    stage.setScene(scene);
+                                                    stage.show();
+
+                                                } catch (IOException ex) {
+                                                    System.out.println("Erro ao abrir janela");
+                                                    ex.printStackTrace();
+                                                }
+                                            }
+
+                                        } else {
+                                            sortear_palavras();
                                         }
 
-                                    } else {
-                                        try {
-                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
-                                            Parent root = loader.load();
-
-                                            Scene scene = new Scene(root);
-                                            Stage stage = new Stage();
-                                            stage.setScene(scene);
-                                            stage.show();
-
-                                        } catch (IOException ex) {
-                                            System.out.println("Erro ao abrir janela");
-                                            ex.printStackTrace();
-                                        }
                                     }
 
-                                } else {
-                                    opcao.setDisable(false);
-                                    sortear_palavras();
-                                }
+                                }));
+                                animacao.play();
                             }
 
                         }
 
                     }
                 } else {
-                    Alert a = new Alert(Alert.AlertType.ERROR);
-                    a.setTitle("ERRO");
-                    a.setContentText("Ops! Sua resposta não está correta, tente de novo");
-                    a.showAndWait();
-                    System.out.println("Incorreta");
+                    desenho.setImage(img.get(64).getImagem());
+                    Timeline animacao2 = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            desenho.setImage(null);
+                            Alert a = new Alert(Alert.AlertType.ERROR);
+                            a.setTitle("ERRO");
+                            a.setContentText("Ops! Sua resposta não está correta, tente de novo");
+                            a.show();
+                            System.out.println("Incorreta");
+                        }
+
+                    }));
+                    animacao2.play();
                 }
 
             });
@@ -141,7 +173,8 @@ public class FXMLMedioController implements Initializable {
     }
 
     @FXML
-    public void voltar(ActionEvent event) {
+    public void voltar(ActionEvent event
+    ) {
         voltar.getScene().getWindow().hide();
 
         try {
@@ -168,8 +201,6 @@ public class FXMLMedioController implements Initializable {
         preencher3.setText("");
         preencher4.setText("");
 
-        List<Medio> palavras = dao.pesquisaTodos();
-
         for (int i = 0; i < opcoes.length; i++) {
             Button op = opcoes[i];
 
@@ -180,43 +211,30 @@ public class FXMLMedioController implements Initializable {
         Random r = new Random();//botões
 
         int k = r.nextInt(palavras.size());
-        int j = r.nextInt(palavras.size());
-
-        silabas1 = palavras.get(k).getNome_palavra_medio().split("-");
+        Medio pal1 = palavras.get(k);
+        silabas1 = pal1.getNome_palavra_medio().split("-");
         silaba_aparece1.setText(silabas1[1]);//Atribui ao label a primeira silaba da palavra que vai aparecer
         falta1 = silabas1[0];
         falta2 = silabas1[2];
-
-        boolean repetida = true;
-        String concat1, concat2;
-
-        do {
-            silabas2 = palavras.get(j).getNome_palavra_medio().split("-");
-            concat1 = silabas1[0].concat(silabas1[1].concat(silabas1[2]));
-            concat2 = silabas2[0].concat(silabas2[1].concat(silabas2[2]));
-
-            if (!concat1.equals(concat2)
-                    && !palavras_sorteadas.contains(concat1)
-                    && !palavras_sorteadas.contains(concat2)) {
-                repetida = false;
-            }
-        } while (repetida);
+        String concat1 = silabas1[0].concat(silabas1[1].concat(silabas1[2]));
+        int id1 = pal1.getId_medio();
+        Imagens img = dao_imagens.pesquisa_medio(id1);
+        imagem1.setImage(img.getImagem());
+        palavras.remove(pal1);
         palavras_sorteadas.add(concat1);
-        palavras_sorteadas.add(concat2);
+
+        int j = r.nextInt(palavras.size());
+        Medio pal2 = palavras.get(j);
+        silabas2 = pal2.getNome_palavra_medio().split("-");
         silaba_aparece2.setText(silabas2[1]);//Atribui ao label a primeira silaba da palavra que vai aparecer
         falta3 = silabas2[0];
         falta4 = silabas2[2];
-        
-        
-        Dao_Imagens c = new Dao_Imagens();
-        
-        int id1 = palavras.get(k).getId_medio();
-        Imagens img = c.pesquisa_medio(id1);
-        imagem1.setImage(img.getImagem());
-
-        int id2 = palavras.get(j).getId_medio();
-        Imagens img1 = c.pesquisa_medio(id2);
+        String concat2 = silabas2[0].concat(silabas2[1].concat(silabas2[2]));
+        int id2 = pal2.getId_medio();
+        Imagens img1 = dao_imagens.pesquisa_medio(id2);
         imagem2.setImage(img1.getImagem());
+        palavras.remove(pal2);
+        palavras_sorteadas.add(concat2);
 
         Dao_Sortidas s = new Dao_Sortidas();
         List<Sortidas> sortidas = s.pesquisaTodos();
@@ -274,5 +292,19 @@ public class FXMLMedioController implements Initializable {
             }
         }
         return false;
+    }
+
+    private String obtemPalavrasCertas() {
+        String resp = "";
+        int conta_palavras = 1;
+
+        for (String palavras_sorteada : palavras_sorteadas) {
+            resp += palavras_sorteada + " ";
+            if (conta_palavras % 5 == 0) {
+                resp += "\n";
+            }
+            conta_palavras++;
+        }
+        return resp;
     }
 }

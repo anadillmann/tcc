@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -139,5 +140,6 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Canvas fx:id="roleta" height="149.0" layoutX="85.0" layoutY="142.0" width="173.0" />
    </children>
 </AnchorPane>

@@ -54,6 +54,7 @@ public class FXMLDificilController implements Initializable {
     public String falta1, falta2, falta3, falta4;
     public String silabas1[], silabas2[];
     private ArrayList<Button> incorretos;
+    private Dao_Imagens dao_imagens;
 
     @FXML
     public void voltar(ActionEvent event) {
@@ -79,6 +80,7 @@ public class FXMLDificilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dao = new Dao_Dificil();
+        dao_imagens = new Dao_Imagens();
         palavras_sorteadas = new ArrayList();
         progresso_percentagem = 0.10;
         progresso.setProgress(progresso_percentagem);
@@ -107,30 +109,14 @@ public class FXMLDificilController implements Initializable {
                                 System.out.println("Correta");
                                 if (progresso_percentagem >= 1) {
                                     Alert a = new Alert(Alert.AlertType.INFORMATION, ""
-                                            + "Prabéns você conseguiu concluir a fase fácil!"
-                                            + " Vamos para a fase média?",
-                                            ButtonType.YES, ButtonType.NO);
+                                            + "Prabéns você conseguiu concluir a fase díficl!",
+                                            ButtonType.YES);
                                     Optional<ButtonType> bt = a.showAndWait();
                                     if (bt.get() == ButtonType.YES) {
                                         ((Stage) progresso.getScene().getWindow()).close();
                                         try {
-                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_dificil/FXMLDificilController"));
-                                            Parent root = loader.load();
-                                            Scene scene = new Scene(root);
-                                            Stage stage = new Stage();
-                                            stage.setScene(scene);
-                                            stage.show();
-
-                                        } catch (IOException ex) {
-                                            System.out.println("Erro ao abrir janela");
-                                            ex.printStackTrace();
-                                        }
-
-                                    } else {
-                                        try {
                                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
                                             Parent root = loader.load();
-
                                             Scene scene = new Scene(root);
                                             Stage stage = new Stage();
                                             stage.setScene(scene);
@@ -140,6 +126,7 @@ public class FXMLDificilController implements Initializable {
                                             System.out.println("Erro ao abrir janela");
                                             ex.printStackTrace();
                                         }
+
                                     }
 
                                 } else {
@@ -182,42 +169,30 @@ public class FXMLDificilController implements Initializable {
         Random r = new Random();//botões
 
         int k = r.nextInt(palavras.size());
-        int j = r.nextInt(palavras.size());
-
-        silabas1 = palavras.get(k).getNome_palavra_dificil().split("-");
+        Dificil pal1 = palavras.get(k);
+        silabas1 = pal1.getNome_palavra_dificil().split("-");
         silaba_aparece1.setText(silabas1[1]);//Atribui ao label a primeira silaba da palavra que vai aparecer
         falta1 = silabas1[0];
         falta2 = silabas1[2];
-
-        boolean repetida = true;
-        String concat1, concat2;
-
-        do {
-            silabas2 = palavras.get(j).getNome_palavra_dificil().split("-");
-            concat1 = silabas1[0].concat(silabas1[1].concat(silabas1[2]));
-            concat2 = silabas2[0].concat(silabas2[1].concat(silabas2[2]));
-
-            if (!concat1.equals(concat2)
-                    && !palavras_sorteadas.contains(concat1)
-                    && !palavras_sorteadas.contains(concat2)) {
-                repetida = false;
-            }
-        } while (repetida);
+        String concat1 = silabas1[0].concat(silabas1[1].concat(silabas1[2]));
+        int id1 = pal1.getId_dificil();
+        Imagens img = dao_imagens.pesquisa_dificil(id1);
+        imagem1.setImage(img.getImagem());
+        palavras.remove(pal1);
         palavras_sorteadas.add(concat1);
-        palavras_sorteadas.add(concat2);
+
+        int j = r.nextInt(palavras.size());
+        Dificil pal2 = palavras.get(j);
+        silabas2 = pal2.getNome_palavra_dificil().split("-");
         silaba_aparece2.setText(silabas2[1]);//Atribui ao label a primeira silaba da palavra que vai aparecer
         falta3 = silabas2[0];
         falta4 = silabas2[2];
-
-        Dao_Imagens c = new Dao_Imagens();
-
-        int id1 = palavras.get(k).getId_dificil();
-        Imagens img = c.pesquisa_dificil(id1);
-        imagem1.setImage(img.getImagem());
-
-        int id2 = palavras.get(j).getId_dificil();
-        Imagens img1 = c.pesquisa_dificil(id2);
+        String concat2 = silabas2[0].concat(silabas2[1].concat(silabas2[2]));
+        int id2 = pal2.getId_dificil();
+        Imagens img1 = dao_imagens.pesquisa_dificil(id2);
         imagem2.setImage(img1.getImagem());
+        palavras.remove(pal2);
+        palavras_sorteadas.add(concat2);
 
         Dao_Sortidas s = new Dao_Sortidas();
         List<Sortidas> sortidas = s.pesquisaTodos();
