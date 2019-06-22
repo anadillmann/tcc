@@ -14,7 +14,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,11 +31,12 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class FXMLDificilController implements Initializable {
 
     @FXML
-    ImageView imagem1, imagem2;
+    ImageView imagem1, imagem2, desenho;
     @FXML
     Label silaba_aparece1, silaba_aparece2;
     @FXML
@@ -55,27 +59,7 @@ public class FXMLDificilController implements Initializable {
     public String silabas1[], silabas2[];
     private ArrayList<Button> incorretos;
     private Dao_Imagens dao_imagens;
-
-    @FXML
-    public void voltar(ActionEvent event) {
-        voltar.getScene().getWindow().hide();
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_nivel/FXMLNivel.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException ex) {
-            System.out.println("Erro ao abrir janela");
-            ex.printStackTrace();
-        }
-
-    }
+    private List<Imagens> img;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -85,6 +69,9 @@ public class FXMLDificilController implements Initializable {
         progresso_percentagem = 0.10;
         progresso.setProgress(progresso_percentagem);
         preenche = new TextField[]{preencher1, preencher2, preencher3, preencher4};
+
+        desenho.setImage(null);
+        img = dao_imagens.pesquisaTodos();
 
         for (TextField t : preenche) {
             t.setEditable(false);
@@ -104,46 +91,67 @@ public class FXMLDificilController implements Initializable {
                             preenche[i].setText(faltas[i]);
                             opcao.setDisable(true);
                             if (cont == 4) {
-                                progresso_percentagem += 0.10;
-                                progresso.setProgress(progresso_percentagem);
-                                System.out.println("Correta");
-                                if (progresso_percentagem >= 1) {
-                                    Alert a = new Alert(Alert.AlertType.INFORMATION, ""
-                                            + "Prabéns você conseguiu concluir a fase díficl!",
-                                            ButtonType.YES);
-                                    Optional<ButtonType> bt = a.showAndWait();
-                                    if (bt.get() == ButtonType.YES) {
-                                        ((Stage) progresso.getScene().getWindow()).close();
-                                        try {
-                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
-                                            Parent root = loader.load();
-                                            Scene scene = new Scene(root);
-                                            Stage stage = new Stage();
-                                            stage.setScene(scene);
-                                            stage.show();
+                                desenho.setImage(img.get(63).getImagem());
+                                Timeline animacao = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+                                    @Override
+                                    public void handle(ActionEvent event) {
+                                        desenho.setImage(null);
+                                        progresso_percentagem += 0.10;
+                                        progresso.setProgress(progresso_percentagem);
+                                        System.out.println("Correta");
 
-                                        } catch (IOException ex) {
-                                            System.out.println("Erro ao abrir janela");
-                                            ex.printStackTrace();
+                                        if (progresso_percentagem >= 1) {
+                                            Alert a = new Alert(Alert.AlertType.INFORMATION, ""
+                                                    + "Prabéns você conseguiu concluir a fase díficl!",
+                                                    ButtonType.YES);
+                                            Optional<ButtonType> bt = a.showAndWait();
+                                            if (bt.get() == ButtonType.YES) {
+                                                ((Stage) progresso.getScene().getWindow()).close();
+                                                try {
+                                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
+                                                    Parent root = loader.load();
+                                                    Scene scene = new Scene(root);
+                                                    Stage stage = new Stage();
+                                                    stage.setScene(scene);
+                                                    stage.show();
+
+                                                } catch (IOException ex) {
+                                                    System.out.println("Erro ao abrir janela");
+                                                    ex.printStackTrace();
+                                                }
+
+                                            }
+
+                                        } else {
+                                            opcao.setDisable(false);
+                                            sortear_palavras();
                                         }
 
                                     }
 
-                                } else {
-                                    opcao.setDisable(false);
-                                    sortear_palavras();
-                                }
+                                }));
+                                animacao.play();
+
                             }
 
                         }
 
                     }
                 } else {
-                    Alert a = new Alert(Alert.AlertType.ERROR);
-                    a.setTitle("ERRO");
-                    a.setContentText("Ops! Sua resposta não está correta, tente de novo");
-                    a.showAndWait();
-                    System.out.println("Incorreta");
+                    desenho.setImage(img.get(64).getImagem());
+                    Timeline animacao2 = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            desenho.setImage(null);
+                            Alert a = new Alert(Alert.AlertType.ERROR);
+                            a.setTitle("ERRO");
+                            a.setContentText("Ops! Sua resposta não está correta, tente de novo");
+                            a.show();
+                            System.out.println("Incorreta");
+                        }
+
+                    }));
+                    animacao2.play();
                 }
 
             });
@@ -250,6 +258,27 @@ public class FXMLDificilController implements Initializable {
             }
         }
         return false;
+    }
+
+    @FXML
+    public void voltar(ActionEvent event) {
+        voltar.getScene().getWindow().hide();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_nivel/FXMLNivel.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+            System.out.println("Erro ao abrir janela");
+            ex.printStackTrace();
+        }
+
     }
 
 }

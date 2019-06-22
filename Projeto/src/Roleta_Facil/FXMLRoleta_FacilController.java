@@ -12,23 +12,30 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.animation.Animation;
+import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class FXMLRoleta_FacilController implements Initializable {
 
     @FXML
-    Button opcao1, opcao2, opcao3, voltar;
+    Button opcao1, opcao2, opcao3, voltar, girar;
     @FXML
     Label silaba_mostra;
     @FXML
@@ -39,6 +46,11 @@ public class FXMLRoleta_FacilController implements Initializable {
     Label silaba1, silaba2, silaba3, silaba4, silaba5, silaba6, silaba7,
             silaba8, silaba9, silaba10, silaba11, silaba12, silaba13, silaba14,
             silaba15, silaba16, silaba17, silaba18;
+    @FXML
+    Canvas roleta;
+
+    @FXML
+    Rectangle r;
 
     String falta;
     String silabas[];
@@ -47,6 +59,7 @@ public class FXMLRoleta_FacilController implements Initializable {
     private Button opcoes[];
     private double progresso_percentagem;
     private ArrayList<String> palavras_sorteadas;
+    private GraphicsContext ctx;
 
     @FXML
     public void voltar() {
@@ -68,8 +81,32 @@ public class FXMLRoleta_FacilController implements Initializable {
 
     }
 
+    @FXML
+    public void girar() {
+        
+        int pos = 0;
+        
+        for(int i = 0; i < circle.length; i++){
+            if(silaba_mostra.getText().equals(circle[i].getText())){
+                pos = i;
+                break;
+            }
+        }
+        r.setStrokeWidth(5);
+        RotateTransition girar_roleta = new RotateTransition(Duration.seconds(3), r);
+        Random r = new Random();//botões
+
+        int numAleatorio = ((pos + 4) % 18) * 20  + 5 * 360 + 10;
+        girar_roleta.setFromAngle(0);
+        girar_roleta.setToAngle(numAleatorio);
+
+        girar_roleta.play();
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         opcoes = new Button[]{opcao1, opcao2, opcao3};
         progresso_percentagem = 0.10;
         silaba_falta.setEditable(false);
@@ -177,7 +214,6 @@ public class FXMLRoleta_FacilController implements Initializable {
 
         Dao_Sortidas s = new Dao_Sortidas();
         List<Sortidas> sortidas = s.pesquisaTodos();
-
         Collections.shuffle(sortidas);// Método usado para embaralhar a lista
 
         for (int j = 0; j < 18; j++) {

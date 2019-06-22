@@ -70,6 +70,9 @@ public class FXMLMedioController implements Initializable {
         progresso.setProgress(progresso_percentagem);
         preenche = new TextField[]{preencher1, preencher2, preencher3, preencher4};
 
+        desenho.setImage(null);
+        img = dao_imagens.pesquisaTodos();
+
         palavras = dao.pesquisaTodos();
 
         for (TextField t : preenche) {
@@ -87,11 +90,8 @@ public class FXMLMedioController implements Initializable {
                         if (opcao.getText().equals(faltas[i])) {
                             cont++;
                             preenche[i].setText(faltas[i]);
+                            
                             if (cont == 4) {
-                                
-                                ///ERROOOOOOO
-                                
-                                System.out.println(img.get(63).getNome());
                                 desenho.setImage(img.get(63).getImagem());
                                 Timeline animacao = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
                                     @Override
@@ -146,11 +146,13 @@ public class FXMLMedioController implements Initializable {
 
                                 }));
                                 animacao.play();
+
                             }
 
                         }
 
                     }
+                    
                 } else {
                     desenho.setImage(img.get(64).getImagem());
                     Timeline animacao2 = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
@@ -173,8 +175,7 @@ public class FXMLMedioController implements Initializable {
     }
 
     @FXML
-    public void voltar(ActionEvent event
-    ) {
+    public void voltar(ActionEvent event) {
         voltar.getScene().getWindow().hide();
 
         try {
