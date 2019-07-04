@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.shape.*?>
@@ -142,6 +144,10 @@
          </font>
       </Label>
       <Button fx:id="girar" layoutX="302.0" layoutY="337.0" mnemonicParsing="false" onAction="#girar" prefHeight="32.0" prefWidth="61.0" text="Girar" />
-      <Rectangle fx:id="r" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="8.0" layoutX="81.0" layoutY="209.0" stroke="BLACK" strokeType="INSIDE" width="193.0" />
+      <ImageView fx:id="r" fitHeight="85.0" fitWidth="147.0" layoutX="103.0" layoutY="181.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagem/flecha.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

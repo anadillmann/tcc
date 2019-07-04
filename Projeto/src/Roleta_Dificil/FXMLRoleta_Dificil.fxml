@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -146,5 +147,11 @@
       <Button fx:id="opcao7" layoutX="410.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
       <Button fx:id="opcao8" layoutX="489.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
       <Button fx:id="opcao9" layoutX="518.0" layoutY="297.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
+      <ImageView fx:id="r" fitHeight="75.0" fitWidth="166.0" layoutX="103.0" layoutY="182.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagem/flecha.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="girar" layoutX="268.0" layoutY="343.0" mnemonicParsing="false" onAction="#girar" text="Girar" />
    </children>
 </AnchorPane>

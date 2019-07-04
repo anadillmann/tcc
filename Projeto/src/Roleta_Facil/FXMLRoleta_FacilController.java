@@ -12,8 +12,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
-import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,7 +30,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -50,7 +53,7 @@ public class FXMLRoleta_FacilController implements Initializable {
     Canvas roleta;
 
     @FXML
-    Rectangle r;
+    ImageView r;
 
     String falta;
     String silabas[];
@@ -83,24 +86,38 @@ public class FXMLRoleta_FacilController implements Initializable {
 
     @FXML
     public void girar() {
-        
+
         int pos = 0;
-        
-        for(int i = 0; i < circle.length; i++){
-            if(silaba_mostra.getText().equals(circle[i].getText())){
+
+        for (int i = 0; i < circle.length; i++) {
+            if (silaba_mostra.getText().equals(circle[i].getText())) {
                 pos = i;
                 break;
             }
         }
-        r.setStrokeWidth(5);
-        RotateTransition girar_roleta = new RotateTransition(Duration.seconds(3), r);
+
+        RotateTransition girar_roleta = new RotateTransition(Duration.seconds(4), r);
         Random r = new Random();//botões
 
-        int numAleatorio = ((pos + 4) % 18) * 20  + 5 * 360 + 10;
+        int numAleatorio = ((pos + 4) % 18) * 20 + 5 * 360 + 10;
         girar_roleta.setFromAngle(0);
         girar_roleta.setToAngle(numAleatorio);
 
         girar_roleta.play();
+
+        Timeline animacao = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                silaba_falta.setVisible(true);
+                silaba_mostra.setVisible(true);
+
+                for (int j = 0; j < opcoes.length; j++) {
+                    opcoes[j].setVisible(true);
+                }
+
+            }
+        }));
+        animacao.play();
 
     }
 
@@ -121,58 +138,57 @@ public class FXMLRoleta_FacilController implements Initializable {
                     progresso_percentagem += 0.10;
                     progresso.setProgress(progresso_percentagem);
                     System.out.println("Correta");
+                            silaba_falta.setText(opcao.getText());
+                            if (progresso_percentagem >= 1) {
+                                Alert a = new Alert(Alert.AlertType.INFORMATION, ""
+                                        + "Prabéns você conseguiu concluir a fase fácil!"
+                                        + " Vamos para a fase média?",
+                                        ButtonType.YES, ButtonType.NO);
+                                Optional<ButtonType> bt = a.showAndWait();
+                                if (bt.get() == ButtonType.YES) {
+                                    ((Stage) progresso.getScene().getWindow()).close();
+                                    try {
+                                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Roleta_Medio/FXMLRoleta_Medio.fxml"));
+                                        Parent root = loader.load();
+                                        Scene scene = new Scene(root);
+                                        Stage stage = new Stage();
+                                        stage.setScene(scene);
+                                        stage.show();
 
-                    silaba_falta.setText(opcao.getText());
-                    if (progresso_percentagem >= 1) {
-                        Alert a = new Alert(Alert.AlertType.INFORMATION, ""
-                                + "Prabéns você conseguiu concluir a fase fácil!"
-                                + " Vamos para a fase média?",
-                                ButtonType.YES, ButtonType.NO);
-                        Optional<ButtonType> bt = a.showAndWait();
-                        if (bt.get() == ButtonType.YES) {
-                            ((Stage) progresso.getScene().getWindow()).close();
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Roleta_Medio/FXMLRoleta_Medio.fxml"));
-                                Parent root = loader.load();
-                                Scene scene = new Scene(root);
-                                Stage stage = new Stage();
-                                stage.setScene(scene);
-                                stage.show();
+                                    } catch (IOException ex) {
+                                        System.out.println("Erro ao abrir janela");
+                                        ex.printStackTrace();
+                                    }
 
-                            } catch (IOException ex) {
-                                System.out.println("Erro ao abrir janela");
-                                ex.printStackTrace();
+                                } else {
+                                    try {
+                                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
+                                        Parent root = loader.load();
+
+                                        Scene scene = new Scene(root);
+                                        Stage stage = new Stage();
+                                        stage.setScene(scene);
+                                        stage.show();
+
+                                    } catch (IOException ex) {
+                                        System.out.println("Erro ao abrir janela");
+                                        ex.printStackTrace();
+                                    }
+
+                                }
+
+                            } else {
+                                String nova_palavra = "";
+                                boolean repetida = true;
+                                do {
+                                    nova_palavra = sortear_palavra();
+
+                                    if (!nova_palavra.equals(palavras_sorteadas)) {
+                                        repetida = false;
+                                    }
+
+                                } while (repetida);
                             }
-
-                        } else {
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
-                                Parent root = loader.load();
-
-                                Scene scene = new Scene(root);
-                                Stage stage = new Stage();
-                                stage.setScene(scene);
-                                stage.show();
-
-                            } catch (IOException ex) {
-                                System.out.println("Erro ao abrir janela");
-                                ex.printStackTrace();
-                            }
-
-                        }
-
-                    } else {
-                        String nova_palavra = "";
-                        boolean repetida = true;
-                        do {
-                            nova_palavra = sortear_palavra();
-
-                            if (!nova_palavra.equals(palavras_sorteadas)) {
-                                repetida = false;
-                            }
-
-                        } while (repetida);
-                    }
 
                 } else {
                     Alert a = new Alert(Alert.AlertType.ERROR);
@@ -194,6 +210,7 @@ public class FXMLRoleta_FacilController implements Initializable {
             silaba15, silaba16, silaba17, silaba18};
 
         incorretos = new ArrayList();
+        silaba_falta.setVisible(false);
 
         silaba_falta.setText("");
         Dao_Facil a = new Dao_Facil();
@@ -207,6 +224,7 @@ public class FXMLRoleta_FacilController implements Initializable {
         int id = palavras.get(i).getId_facil();
 
         silaba_mostra.setText(silabas[0]);//Atribui ao label a primeira silaba da palavra que vai aparecer
+        silaba_mostra.setVisible(false);
         falta = silabas[1];
 
         int pos1 = r.nextInt(17) + 0;
@@ -237,6 +255,7 @@ public class FXMLRoleta_FacilController implements Initializable {
                 opcoes[j].setText(sortida_sorteada);
                 incorretos.add(opcoes[j]);
             }
+            opcoes[j].setVisible(false);
         }
 
         return silabas[0] + "-" + silabas[1];

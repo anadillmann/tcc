@@ -12,6 +12,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,7 +28,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class FXMLRoleta_DificilController implements Initializable {
 
@@ -40,6 +47,8 @@ public class FXMLRoleta_DificilController implements Initializable {
     Label silaba1, silaba2, silaba3, silaba4, silaba5, silaba6, silaba7,
             silaba8, silaba9, silaba10, silaba11, silaba12, silaba13, silaba14,
             silaba15, silaba16, silaba17, silaba18;
+    @FXML
+    ImageView r;
 
     private Label circle[];
     private String faltas[];
@@ -71,10 +80,48 @@ public class FXMLRoleta_DificilController implements Initializable {
         }
     }
 
+    @FXML
+    public void girar() {
+
+        int pos = 0;
+
+        for (int i = 0; i < circle.length; i++) {
+            if (silaba_aparece.getText().equals(circle[i].getText())) {
+                pos = i;
+                break;
+            }
+        }
+
+        RotateTransition girar_roleta = new RotateTransition(Duration.seconds(4), r);
+        Random r = new Random();//botões
+
+        int numAleatorio = ((pos + 4) % 18) * 20 + 5 * 360 + 10;
+        girar_roleta.setFromAngle(0);
+        girar_roleta.setToAngle(numAleatorio);
+
+        girar_roleta.play();
+
+        Timeline animacao = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                silaba_falta1.setVisible(true);
+                silaba_falta2.setVisible(true);
+                silaba_aparece.setVisible(true);
+
+                for (int j = 0; j < opcoes.length; j++) {
+                    opcoes[j].setVisible(true);
+                }
+
+            }
+        }));
+        animacao.play();
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        opcoes = new Button[]{opcao1, opcao2, opcao3, opcao4, opcao5, opcao6, 
-        opcao7, opcao8, opcao9};
+        opcoes = new Button[]{opcao1, opcao2, opcao3, opcao4, opcao5, opcao6,
+            opcao7, opcao8, opcao9};
         preenche = new TextField[]{silaba_falta1, silaba_falta2};
 
         progresso_percentagem = 0.10;
@@ -161,7 +208,7 @@ public class FXMLRoleta_DificilController implements Initializable {
 
         Dao_Dificil a = new Dao_Dificil();
         List<Dificil> palavras = a.pesquisaTodos();
-        
+
         Collections.shuffle(palavras);// Método usado para embaralhar a lista
         Random r = new Random();//botões
         int i = r.nextInt(palavras.size());
@@ -172,6 +219,13 @@ public class FXMLRoleta_DificilController implements Initializable {
         silaba_aparece.setText(silabas[1]);//Atribui ao label a primeira silaba da palavra que vai aparecer
         falta1 = silabas[0];
         falta2 = silabas[2];
+
+        silaba_aparece.setVisible(false);
+        silaba_falta1.setVisible(false);
+        silaba_falta2.setVisible(false);
+
+        int pos_c = r.nextInt(17) + 0;
+        circle[pos_c].setText(silabas[1]);
 
         Dao_Sortidas s = new Dao_Sortidas();
         List<Sortidas> sortidas = s.pesquisaTodos();
@@ -190,7 +244,7 @@ public class FXMLRoleta_DificilController implements Initializable {
 
         opcoes[pos1].setText(silabas[0]);
         opcoes[pos1].setDisable(false);
-        
+
         int pos2 = 0;
         do {
             pos2 = r.nextInt(8) + 0;
@@ -208,6 +262,7 @@ public class FXMLRoleta_DificilController implements Initializable {
                 opcoes[j].setText(sortida_sorteada);
                 incorretos.add(opcoes[j]);
             }
+            opcoes[j].setVisible(false);
         }
 
         cont = 0;
