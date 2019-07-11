@@ -15,7 +15,7 @@
         <URL value="@../Qual_palavra_facil/fxmlfacil.css" />
     </stylesheets>
    <children>
-      <Label layoutX="195.0" layoutY="31.0" prefHeight="38.0" prefWidth="212.0" text="Qual é a palavra?">
+      <Label fx:id="title" layoutX="144.0" layoutY="10.0" prefHeight="56.0" prefWidth="354.0" text="Qual é a palavra?">
          <font>
             <Font size="26.0" />
          </font>
@@ -25,11 +25,11 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Button fx:id="opcao5" layoutX="526.0" layoutY="267.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
+      <Button fx:id="opcao5" layoutX="519.0" layoutY="267.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
       <TextField fx:id="preencher1" layoutX="220.0" layoutY="108.0" prefHeight="38.0" prefWidth="52.0" />
       <ImageView fx:id="imagem1" fitHeight="53.0" fitWidth="52.0" layoutX="118.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="opcao9" layoutX="494.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
-      <Button fx:id="opcao2" layoutX="280.0" layoutY="268.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
+      <Button fx:id="opcao9" layoutX="487.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
+      <Button fx:id="opcao2" layoutX="273.0" layoutY="268.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
       <ProgressBar fx:id="progresso" layoutX="1.0" layoutY="374.0" prefHeight="25.0" prefWidth="600.0" progress="0.05" />
       <TextField fx:id="preencher2" layoutX="394.0" layoutY="108.0" prefHeight="38.0" prefWidth="52.0" />
       <TextField fx:id="preencher3" layoutX="222.0" layoutY="168.0" prefHeight="38.0" prefWidth="52.0" />
@@ -40,13 +40,13 @@
          </font>
       </Label>
       <ImageView fx:id="imagem2" fitHeight="53.0" fitWidth="52.0" layoutX="119.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="opcao6" layoutX="239.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
-      <Button fx:id="opcao7" layoutX="328.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
-      <Button fx:id="opcao8" layoutX="414.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
-      <Button fx:id="opcao1" layoutX="204.0" layoutY="267.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
-      <Button fx:id="opcao4" layoutX="445.0" layoutY="267.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
-      <Button fx:id="opcao3" layoutX="362.0" layoutY="268.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
-      <Button fx:id="voltar" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Button fx:id="opcao6" layoutX="232.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
+      <Button fx:id="opcao7" layoutX="321.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
+      <Button fx:id="opcao8" layoutX="407.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
+      <Button fx:id="opcao1" layoutX="197.0" layoutY="267.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
+      <Button fx:id="opcao4" layoutX="438.0" layoutY="267.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
+      <Button fx:id="opcao3" layoutX="355.0" layoutY="268.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
+      <Button fx:id="voltar" layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
       <ImageView fx:id="desenho" fitHeight="108.0" fitWidth="115.0" layoutX="24.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

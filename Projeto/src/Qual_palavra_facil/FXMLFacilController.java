@@ -16,6 +16,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,6 +31,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -55,6 +57,7 @@ public class FXMLFacilController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Font.loadFont(FXMLFacilController.class.getResource("Doodletoon line.ttf").toExternalForm(), 10);
         Dao_Imagens k = new Dao_Imagens();
         img = k.pesquisaTodos();
         palavras_sorteadas = new ArrayList();
@@ -79,42 +82,44 @@ public class FXMLFacilController implements Initializable {
                         public void handle(ActionEvent event) {
                             desenho.setImage(null);
                             if (progresso_percentagem >= 1) {
-                                Alert a = new Alert(Alert.AlertType.INFORMATION, ""
-                                        + "Prabéns você conseguiu concluir a fase fácil!"
-                                        + " Vamos para a fase média?",
-                                        ButtonType.YES, ButtonType.NO);
-                                Optional<ButtonType> bt = a.showAndWait();
-                                if (bt.get() == ButtonType.YES) {
-                                    ((Stage) progresso.getScene().getWindow()).close();
-                                    try {
-                                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_medio/FXMLMedio.fxml"));
-                                        Parent root = loader.load();
+                                Platform.runLater(() -> {
+                                    Alert a = new Alert(Alert.AlertType.INFORMATION, ""
+                                            + "Prabéns você conseguiu concluir a fase fácil!"
+                                            + " Vamos para a fase média?",
+                                            ButtonType.YES, ButtonType.NO);
+                                    Optional<ButtonType> bt = a.showAndWait();
+                                    if (bt.get() == ButtonType.YES) {
+                                        ((Stage) progresso.getScene().getWindow()).close();
+                                        try {
+                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_medio/FXMLMedio.fxml"));
+                                            Parent root = loader.load();
 
-                                        Scene scene = new Scene(root);
-                                        Stage stage = new Stage();
-                                        stage.setScene(scene);
-                                        stage.show();
+                                            Scene scene = new Scene(root);
+                                            Stage stage = new Stage();
+                                            stage.setScene(scene);
+                                            stage.show();
 
-                                    } catch (IOException ex) {
-                                        System.out.println("Erro ao abrir janela");
-                                        ex.printStackTrace();
+                                        } catch (IOException ex) {
+                                            System.out.println("Erro ao abrir janela");
+                                            ex.printStackTrace();
+                                        }
+
+                                    } else {
+                                        try {
+                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
+                                            Parent root = loader.load();
+
+                                            Scene scene = new Scene(root);
+                                            Stage stage = new Stage();
+                                            stage.setScene(scene);
+                                            stage.show();
+
+                                        } catch (IOException ex) {
+                                            System.out.println("Erro ao abrir janela");
+                                            ex.printStackTrace();
+                                        }
                                     }
-
-                                } else {
-                                    try {
-                                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
-                                        Parent root = loader.load();
-
-                                        Scene scene = new Scene(root);
-                                        Stage stage = new Stage();
-                                        stage.setScene(scene);
-                                        stage.show();
-
-                                    } catch (IOException ex) {
-                                        System.out.println("Erro ao abrir janela");
-                                        ex.printStackTrace();
-                                    }
-                                }
+                                });
                             } else {
                                 String nova_palavra = "";
                                 boolean repetida = true;
@@ -131,7 +136,7 @@ public class FXMLFacilController implements Initializable {
                     }));
                     //animacao.setCycleCount(Timeline.INDEFINITE);
                     animacao.play();
-                    
+
                 } else {
                     desenho.setImage(img.get(64).getImagem());
                     Timeline animacao2 = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
@@ -197,8 +202,7 @@ public class FXMLFacilController implements Initializable {
         }
         return silabas[0] + "-" + silabas[1];
     }
-    
-    
+
     @FXML
     public void voltar(ActionEvent event) {
 

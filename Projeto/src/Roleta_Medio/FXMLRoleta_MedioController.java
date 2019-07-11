@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -141,13 +142,14 @@ public class FXMLRoleta_MedioController implements Initializable {
                             preenche[i].setText(faltas[i]);
                             opcao.setDisable(true);
                             if (cont == 2) {
-                                progresso_percentagem += 0.10;
+                                progresso_percentagem += 0.50;
                                 progresso.setProgress(progresso_percentagem);
                                 System.out.println("Correta");
                                 if (progresso_percentagem >= 1) {
+                                    Platform.runLater(() -> {
                                     Alert a = new Alert(Alert.AlertType.INFORMATION, ""
-                                            + "Prabéns você conseguiu concluir a fase fácil!"
-                                            + " Vamos para a fase média?",
+                                            + "Prabéns você conseguiu concluir a fase média!"
+                                            + " Vamos para a fase dificil?",
                                             ButtonType.YES, ButtonType.NO);
                                     Optional<ButtonType> bt = a.showAndWait();
                                     if (bt.get() == ButtonType.YES) {
@@ -180,6 +182,7 @@ public class FXMLRoleta_MedioController implements Initializable {
                                             ex.printStackTrace();
                                         }
                                     }
+                                    });
                                 } else {
                                     String nova_palavra = "";
                                     boolean repetida = true;

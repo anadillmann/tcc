@@ -11,15 +11,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class FXMLRegra_QualpalavraController implements Initializable {
 
     @FXML
     Button voltar, jogar;
-    @FXML 
+    @FXML
     TextArea regras;
-   
 
     @FXML
     public void jogar(ActionEvent event) {
@@ -44,7 +44,7 @@ public class FXMLRegra_QualpalavraController implements Initializable {
 
     @FXML
     public void voltar(ActionEvent event) {
-                voltar.getScene().getWindow().hide();
+        voltar.getScene().getWindow().hide();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/EscolherJogo/FXMLEscolherJogo.fxml"));
@@ -64,7 +64,8 @@ public class FXMLRegra_QualpalavraController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         regras.setEditable(false);
+        regras.setEditable(false);
+        Font.loadFont(FXMLRegra_QualpalavraController.class.getResource("Doodletoon line.ttf").toExternalForm(), 10);
 
     }
 

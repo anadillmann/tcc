@@ -11,7 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class FXMLInicialController implements Initializable {
@@ -20,6 +22,8 @@ public class FXMLInicialController implements Initializable {
     Button entrar;
     @FXML
     TextField nome;
+    @FXML
+    Label title, label_nome;
 
     @FXML
     public void entrar(ActionEvent event) {
@@ -52,6 +56,8 @@ public class FXMLInicialController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Font.loadFont(FXMLInicialController.class.getResource("Doodletoon line.ttf").toExternalForm(), 10);
+
 
     }
 

@@ -15,23 +15,23 @@
         <URL value="@fxmlfacil.css" />
     </stylesheets>
    <children>
-      <Label layoutX="194.0" layoutY="46.0" prefHeight="38.0" prefWidth="212.0" text="Qual é a palavra?">
+      <Label fx:id="title" layoutX="123.0" layoutY="14.0" prefHeight="56.0" prefWidth="370.0" text="Qual é a palavra?">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <Label fx:id="silaba_aparece" layoutX="274.0" layoutY="162.0" prefHeight="38.0" prefWidth="52.0" textAlignment="CENTER" textFill="#110202">
+      <Label fx:id="silaba_aparece" layoutX="274.0" layoutY="162.0" prefHeight="46.0" prefWidth="67.0" textAlignment="CENTER" textFill="#110202">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Button fx:id="opcao1" layoutX="191.0" layoutY="279.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
-      <TextField fx:id="preencher" layoutX="380.0" layoutY="162.0" prefHeight="38.0" prefWidth="52.0" />
+      <Button fx:id="opcao1" layoutX="183.0" layoutY="279.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" />
+      <TextField fx:id="preencher" layoutX="380.0" layoutY="162.0" prefHeight="46.0" prefWidth="67.0" />
       <ImageView fx:id="imagem_facil" fitHeight="68.0" fitWidth="73.0" layoutX="158.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="opcao2" layoutX="284.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
-      <Button fx:id="opcao3" layoutX="380.0" layoutY="279.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" />
+      <Button fx:id="opcao2" layoutX="277.0" layoutY="280.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" />
+      <Button fx:id="opcao3" layoutX="372.0" layoutY="279.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" />
       <ProgressBar fx:id="progresso" layoutX="1.0" layoutY="374.0" prefHeight="25.0" prefWidth="600.0" progress="0.04" />
-      <Button fx:id="voltar" layoutX="-1.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Button fx:id="voltar" layoutX="3.0" layoutY="3.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
       <ImageView fx:id="desenho" fitHeight="100.0" fitWidth="98.0" layoutX="14.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

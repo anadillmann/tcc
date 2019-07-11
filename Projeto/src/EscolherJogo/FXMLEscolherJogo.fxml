@@ -15,18 +15,24 @@
         <URL value="@fxmlescoclherjogo.css" />
     </stylesheets>
    <children>
-      <Label layoutX="168.0" layoutY="35.0" text="Jogos de Alfabetização">
+      <Label fx:id="title" layoutX="72.0" layoutY="28.0" prefHeight="56.0" prefWidth="457.0" text="Jogos de Alfabetização">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Button fx:id="roleta" layoutX="205.0" layoutY="175.0" mnemonicParsing="false" onAction="#abrir_roleta" prefHeight="25.0" prefWidth="201.0" text="Roleta Silábica" />
-      <Button fx:id="q_palavra" layoutX="205.0" layoutY="229.0" mnemonicParsing="false" onAction="#abrir_qpalavra" prefHeight="25.0" prefWidth="201.0" text="Qual é  a palavra?" />
-      <Label layoutX="193.0" layoutY="93.0" text="Bem vindo ao mundo das letras!!!">
+      <Button fx:id="roleta" layoutX="198.0" layoutY="290.0" mnemonicParsing="false" onAction="#abrir_roleta" prefHeight="56.0" prefWidth="197.0" text="Roleta Silábica">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Button fx:id="q_palavra" layoutX="198.0" layoutY="210.0" mnemonicParsing="false" onAction="#abrir_qpalavra" prefHeight="56.0" prefWidth="197.0" text="Qual é  a palavra?">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Label fx:id="label" layoutX="215.0" layoutY="99.0" text="Seja bem vindo!">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="voltar" layoutY="-1.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Button fx:id="voltar" layoutY="3.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
    </children>
 </AnchorPane>

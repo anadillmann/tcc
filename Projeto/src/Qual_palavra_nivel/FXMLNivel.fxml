@@ -13,31 +13,31 @@
         <URL value="@fxmlnivel.css" />
     </stylesheets>
    <children>
-      <Button fx:id="facil" layoutX="175.0" layoutY="137.0" mnemonicParsing="false" onAction="#nivel_facil" prefHeight="25.0" prefWidth="250.0" text="Fácil">
+      <Button fx:id="facil" layoutX="176.0" layoutY="156.0" mnemonicParsing="false" onAction="#nivel_facil" prefHeight="56.0" prefWidth="248.0" text="Fácil">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="medio" layoutX="175.0" layoutY="209.0" mnemonicParsing="false" onAction="#nivel_medio" prefHeight="25.0" prefWidth="250.0" text="Médio">
+      <Button fx:id="medio" layoutX="176.0" layoutY="235.0" mnemonicParsing="false" onAction="#nivel_medio" prefHeight="56.0" prefWidth="248.0" text="Médio">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="dificil" layoutX="175.0" layoutY="283.0" mnemonicParsing="false" onAction="#nivel_dificil" prefHeight="25.0" prefWidth="250.0" text="Difícil">
+      <Button fx:id="dificil" layoutX="176.0" layoutY="314.0" mnemonicParsing="false" onAction="#nivel_dificil" prefHeight="56.0" prefWidth="248.0" text="Difícil">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Label layoutX="202.0" layoutY="44.0" text="Qual é a palavra?">
+      <Label fx:id="title" layoutX="153.0" layoutY="6.0" text="Qual é a palavra?">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <Label layoutX="233.0" layoutY="101.0" text="Escolha o nível desejado">
+      <Label fx:id="label" layoutX="176.0" layoutY="97.0" text="Escolha o nível desejado">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="voltar" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Button fx:id="voltar" layoutX="1.0" layoutY="3.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
    </children>
 </AnchorPane>

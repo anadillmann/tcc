@@ -14,18 +14,18 @@
         <URL value="@fxmlinicial.css" />
     </stylesheets>
    <children>
-      <Label layoutX="163.0" layoutY="41.0" text="Jogos de Alfabetização">
+      <Label fx:id="title" layoutX="86.0" layoutY="26.0" prefHeight="83.0" prefWidth="448.0" text="Jogos de Alfabetização">
          <font>
-            <Font name="System Bold" size="27.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="240.0" layoutY="129.0" text="Qual o seu nome?">
+      <Label fx:id="label_nome" layoutX="203.0" layoutY="152.0" text="Qual é o seu nome?">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="nome" layoutX="202.0" layoutY="167.0" prefHeight="25.0" prefWidth="196.0" />
-      <Button fx:id="entrar" layoutX="256.0" layoutY="214.0" mnemonicParsing="false" onAction="#entrar" text="Vamos começar!">
+      <TextField fx:id="nome" layoutX="212.0" layoutY="206.0" prefHeight="39.0" prefWidth="196.0" />
+      <Button fx:id="entrar" layoutX="243.0" layoutY="274.0" mnemonicParsing="false" onAction="#entrar" prefHeight="45.0" prefWidth="135.0" text="Vamos começar!">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

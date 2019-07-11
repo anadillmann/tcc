@@ -30,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -63,6 +64,7 @@ public class FXMLDificilController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Font.loadFont(FXMLDificilController.class.getResource("Doodletoon line.ttf").toExternalForm(), 10);
         dao = new Dao_Dificil();
         dao_imagens = new Dao_Imagens();
         palavras_sorteadas = new ArrayList();
