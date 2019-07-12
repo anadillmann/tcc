@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class FXMLRegra_RoletaController implements Initializable {
@@ -63,6 +64,8 @@ public class FXMLRegra_RoletaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         regras.setEditable(false);
+        Font.loadFont(FXMLRegra_RoletaController.class.getResource("Doodletoon line.ttf").toExternalForm(), 10);
+
 
     }
 

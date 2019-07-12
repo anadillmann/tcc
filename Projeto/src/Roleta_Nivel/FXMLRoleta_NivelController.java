@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class FXMLRoleta_NivelController implements Initializable {
@@ -103,7 +104,8 @@ public class FXMLRoleta_NivelController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Font.loadFont(FXMLRoleta_NivelController.class.getResource("Doodletoon line.ttf").toExternalForm(), 10);
+
     }
 
 }

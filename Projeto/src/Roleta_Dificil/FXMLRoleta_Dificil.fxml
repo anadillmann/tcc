@@ -25,13 +25,13 @@
       <Button fx:id="opcao2" layoutX="409.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
       <Button fx:id="opcao3" layoutX="477.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
       <ProgressBar fx:id="progresso" layoutY="374.0" prefHeight="25.0" prefWidth="600.0" progress="0.05" />
-      <Text layoutX="217.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roleta Silábica">
+      <Text fx:id="title" layoutX="164.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roleta Silábica">
          <font>
             <Font size="26.0" />
          </font>
       </Text>
-      <Button fx:id="voltar" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
-      <Circle fill="#cfdce8" layoutX="175.0" layoutY="216.0" radius="151.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="voltar" layoutX="2.0" layoutY="3.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Circle fx:id="circle_m" fill="#cfdce8" layoutX="175.0" layoutY="216.0" radius="151.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
       <Circle fx:id="circ1" fill="#9e4806" layoutX="176.0" layoutY="89.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="circ2" fill="#1fff92" layoutX="219.0" layoutY="97.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="circ3" fill="#ff1f2d" layoutX="258.0" layoutY="120.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
@@ -152,6 +152,6 @@
             <Image url="@../imagem/flecha.png" />
          </image>
       </ImageView>
-      <Button fx:id="girar" layoutX="268.0" layoutY="343.0" mnemonicParsing="false" onAction="#girar" text="Girar" />
+      <Button fx:id="girar" layoutX="268.0" layoutY="336.0" mnemonicParsing="false" onAction="#girar" prefHeight="32.0" prefWidth="55.0" text="Girar" />
    </children>
 </AnchorPane>

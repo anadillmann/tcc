@@ -29,6 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -120,6 +121,7 @@ public class FXMLRoleta_DificilController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Font.loadFont(FXMLRoleta_DificilController.class.getResource("Doodletoon line.ttf").toExternalForm(), 10);
         opcoes = new Button[]{opcao1, opcao2, opcao3, opcao4, opcao5, opcao6,
             opcao7, opcao8, opcao9};
         preenche = new TextField[]{silaba_falta1, silaba_falta2};

@@ -30,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -121,6 +122,7 @@ public class FXMLRoleta_MedioController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Font.loadFont(FXMLRoleta_MedioController.class.getResource("Doodletoon line.ttf").toExternalForm(), 10);
         opcoes = new Button[]{opcao1, opcao2, opcao3, opcao4, opcao5, opcao6};
         preenche = new TextField[]{silaba_falta1, silaba_falta2};
 
@@ -147,41 +149,41 @@ public class FXMLRoleta_MedioController implements Initializable {
                                 System.out.println("Correta");
                                 if (progresso_percentagem >= 1) {
                                     Platform.runLater(() -> {
-                                    Alert a = new Alert(Alert.AlertType.INFORMATION, ""
-                                            + "Prabéns você conseguiu concluir a fase média!"
-                                            + " Vamos para a fase dificil?",
-                                            ButtonType.YES, ButtonType.NO);
-                                    Optional<ButtonType> bt = a.showAndWait();
-                                    if (bt.get() == ButtonType.YES) {
-                                        ((Stage) progresso.getScene().getWindow()).close();
-                                        try {
-                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Roleta_Dificil/FXMLRoleta_DificilController"));
-                                            Parent root = loader.load();
-                                            Scene scene = new Scene(root);
-                                            Stage stage = new Stage();
-                                            stage.setScene(scene);
-                                            stage.show();
+                                        Alert a = new Alert(Alert.AlertType.INFORMATION, ""
+                                                + "Prabéns você conseguiu concluir a fase média!"
+                                                + " Vamos para a fase dificil?",
+                                                ButtonType.YES, ButtonType.NO);
+                                        Optional<ButtonType> bt = a.showAndWait();
+                                        if (bt.get() == ButtonType.YES) {
+                                            ((Stage) progresso.getScene().getWindow()).close();
+                                            try {
+                                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Roleta_Dificil/FXMLRoleta_DificilController"));
+                                                Parent root = loader.load();
+                                                Scene scene = new Scene(root);
+                                                Stage stage = new Stage();
+                                                stage.setScene(scene);
+                                                stage.show();
 
-                                        } catch (IOException ex) {
-                                            System.out.println("Erro ao abrir janela");
-                                            ex.printStackTrace();
+                                            } catch (IOException ex) {
+                                                System.out.println("Erro ao abrir janela");
+                                                ex.printStackTrace();
+                                            }
+
+                                        } else {
+                                            try {
+                                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
+                                                Parent root = loader.load();
+
+                                                Scene scene = new Scene(root);
+                                                Stage stage = new Stage();
+                                                stage.setScene(scene);
+                                                stage.show();
+
+                                            } catch (IOException ex) {
+                                                System.out.println("Erro ao abrir janela");
+                                                ex.printStackTrace();
+                                            }
                                         }
-
-                                    } else {
-                                        try {
-                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
-                                            Parent root = loader.load();
-
-                                            Scene scene = new Scene(root);
-                                            Stage stage = new Stage();
-                                            stage.setScene(scene);
-                                            stage.show();
-
-                                        } catch (IOException ex) {
-                                            System.out.println("Erro ao abrir janela");
-                                            ex.printStackTrace();
-                                        }
-                                    }
                                     });
                                 } else {
                                     String nova_palavra = "";

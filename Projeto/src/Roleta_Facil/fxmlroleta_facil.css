@@ -1,7 +1,23 @@
-/*
- * Empty Stylesheet file.
- */
-
-.mainFxmlClass {
-
+#AnchorPane{
+    -fx-background-color: #1BA6B3;
+    -fx-border-color: #FF8C59;
+    -fx-border-radius: 1px;
 }
+
+.button {
+    -fx-background-color: #FF8C59  ;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+
+#title{
+    -fx-font-family: "Doodletoon line";
+    -fx-font-size: 39px;
+}
+
+#circle_m{
+    -fx-fill: #1BA6B3;
+}
+
+

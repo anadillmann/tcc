@@ -8,31 +8,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Roleta_Nivel.FXMLRoleta_NivelController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Roleta_Nivel.FXMLRoleta_NivelController">
     <stylesheets>
         <URL value="@fxmlroleta_nivel.css" />
     </stylesheets>
    <children>
-      <Label layoutX="217.0" layoutY="35.0" text="Roleta Silábica">
+      <Label fx:id="title" layoutX="176.0" layoutY="14.0" text="Roleta Silábica">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="facil" layoutX="181.0" layoutY="112.0" mnemonicParsing="false" onAction="#facil" prefHeight="46.0" prefWidth="238.0" text="Fácil">
+      <Button fx:id="facil" layoutX="181.0" layoutY="112.0" mnemonicParsing="false" onAction="#facil" prefHeight="64.0" prefWidth="238.0" text="Fácil">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="medio" layoutX="182.0" layoutY="191.0" mnemonicParsing="false" onAction="#medio" prefHeight="46.0" prefWidth="238.0" text="Médio">
+      <Button fx:id="medio" layoutX="182.0" layoutY="200.0" mnemonicParsing="false" onAction="#medio" prefHeight="64.0" prefWidth="238.0" text="Médio">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="dificil" layoutX="181.0" layoutY="276.0" mnemonicParsing="false" onAction="#dificil" prefHeight="46.0" prefWidth="238.0" text="Difícil">
+      <Button fx:id="dificil" layoutX="182.0" layoutY="291.0" mnemonicParsing="false" onAction="#dificil" prefHeight="64.0" prefWidth="238.0" text="Difícil">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="voltar" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Button fx:id="voltar" layoutX="2.0" layoutY="4.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
    </children>
 </AnchorPane>
