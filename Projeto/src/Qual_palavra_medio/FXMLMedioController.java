@@ -115,7 +115,7 @@ public class FXMLMedioController implements Initializable {
                                                 if (bt.get() == ButtonType.YES) {
                                                     ((Stage) progresso.getScene().getWindow()).close();
                                                     try {
-                                                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_dificil/FXMLDificilController"));
+                                                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_dificil/FXMLDificil.fxml"));
                                                         Parent root = loader.load();
                                                         Scene scene = new Scene(root);
                                                         Stage stage = new Stage();
@@ -164,42 +164,51 @@ public class FXMLMedioController implements Initializable {
                     Timeline animacao2 = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            desenho.setImage(null);
-                            Alert a = new Alert(Alert.AlertType.ERROR);
-                            a.setTitle("ERRO");
-                            a.setContentText("Ops! Sua resposta não está correta, tente de novo");
-                            a.show();
-                            System.out.println("Incorreta");
+                            Platform.runLater(() -> {
+                                desenho.setImage(null);
+                                Alert a = new Alert(Alert.AlertType.ERROR);
+                                a.setTitle("ERRO");
+                                a.setContentText("Ops! Sua resposta não está correta, tente de novo");
+                                a.show();
+                                System.out.println("Incorreta");
+                            });
+                            }
+
                         }
 
-                    }));
-                    animacao2.play();
-                }
+                        ));
+                        animacao2.play ();
+                    }
 
-            });
+                });
+            }
         }
-    }
 
-    @FXML
-    public void voltar(ActionEvent event) {
+        @FXML
+        public void voltar
+        (ActionEvent event
+        
+            ) {
         voltar.getScene().getWindow().hide();
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_nivel/FXMLNivel.fxml"));
-            Parent root = loader.load();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_nivel/FXMLNivel.fxml"));
+                Parent root = loader.load();
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.show();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setResizable(false);
+                stage.setScene(scene);
+                stage.show();
 
-        } catch (IOException ex) {
-            System.out.println("Erro ao abrir janela");
-            ex.printStackTrace();
+            } catch (IOException ex) {
+                System.out.println("Erro ao abrir janela");
+                ex.printStackTrace();
+            }
+
         }
 
-    }
+    
 
     private void sortear_palavras() {
         incorretos = new ArrayList();

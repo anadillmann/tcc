@@ -144,7 +144,7 @@ public class FXMLRoleta_MedioController implements Initializable {
                             preenche[i].setText(faltas[i]);
                             opcao.setDisable(true);
                             if (cont == 2) {
-                                progresso_percentagem += 0.50;
+                                progresso_percentagem += 0.10;
                                 progresso.setProgress(progresso_percentagem);
                                 System.out.println("Correta");
                                 if (progresso_percentagem >= 1) {
@@ -157,7 +157,7 @@ public class FXMLRoleta_MedioController implements Initializable {
                                         if (bt.get() == ButtonType.YES) {
                                             ((Stage) progresso.getScene().getWindow()).close();
                                             try {
-                                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Roleta_Dificil/FXMLRoleta_DificilController"));
+                                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Roleta_Dificil/FXMLRoleta_Dificil.fxml"));
                                                 Parent root = loader.load();
                                                 Scene scene = new Scene(root);
                                                 Stage stage = new Stage();
@@ -203,17 +203,21 @@ public class FXMLRoleta_MedioController implements Initializable {
                     }
 
                 } else {
-                    Alert a = new Alert(Alert.AlertType.ERROR);
-                    a.setTitle("ERRO");
-                    a.setContentText("Ops! Sua resposta não está correta, tente de novo");
-                    a.showAndWait();
-                    System.out.println("Incorreta");
-                }
+                    Platform.runLater(() -> {
+                        Alert a = new Alert(Alert.AlertType.ERROR);
+                        a.setTitle("ERRO");
+                        a.setContentText("Ops! Sua resposta não está correta, tente de novo");
+                        a.showAndWait();
+                        System.out.println("Incorreta");
+                    });
+                    }
 
-            });
+                });
 
+            }
         }
-    }
+
+    
 
     private String sortear_palavra() {
 

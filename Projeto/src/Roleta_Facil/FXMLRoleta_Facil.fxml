@@ -149,5 +149,9 @@
             <Image url="@../imagem/flecha.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="desenho" depthTest="ENABLE" fitHeight="142.0" fitWidth="147.0" layoutX="417.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor></ImageView>
    </children>
 </AnchorPane>

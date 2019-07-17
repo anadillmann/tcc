@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Tela_Fim.FXML_FimController">
+    <stylesheets>
+        <URL value="@fxml_fim.css" />
+    </stylesheets>
+   <children>
+      <Label fx:id="title" layoutX="178.0" layoutY="22.0" prefHeight="64.0" prefWidth="289.0" text="GAME OVER!">
+         <font>
+            <Font size="56.0" />
+         </font>
+      </Label>
+      <Label fx:id="label" layoutX="245.0" layoutY="123.0" text="PARABÉNS!">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="label1" layoutX="46.0" layoutY="172.0" prefHeight="34.0" prefWidth="533.0" text="Você acaba de finalizar todos os níveis do jogo">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="181.0" fitWidth="178.0" layoutX="197.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagem/medalha.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="478.0" layoutY="339.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="108.0" text="Escolher jogo" />
+   </children>
+</AnchorPane>

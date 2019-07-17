@@ -16,6 +16,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -101,28 +102,31 @@ public class FXMLDificilController implements Initializable {
                                         progresso_percentagem += 0.10;
                                         progresso.setProgress(progresso_percentagem);
                                         System.out.println("Correta");
-
                                         if (progresso_percentagem >= 1) {
-                                            Alert a = new Alert(Alert.AlertType.INFORMATION, ""
-                                                    + "Prabéns você conseguiu concluir a fase díficl!",
-                                                    ButtonType.YES);
-                                            Optional<ButtonType> bt = a.showAndWait();
-                                            if (bt.get() == ButtonType.YES) {
-                                                ((Stage) progresso.getScene().getWindow()).close();
-                                                try {
-                                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
-                                                    Parent root = loader.load();
-                                                    Scene scene = new Scene(root);
-                                                    Stage stage = new Stage();
-                                                    stage.setScene(scene);
-                                                    stage.show();
 
-                                                } catch (IOException ex) {
-                                                    System.out.println("Erro ao abrir janela");
-                                                    ex.printStackTrace();
+                                            Platform.runLater(() -> {
+                                                Alert a = new Alert(Alert.AlertType.INFORMATION, ""
+                                                        + "Prabéns você conseguiu concluir a fase díficl!",
+                                                        ButtonType.YES);
+                                                Optional<ButtonType> bt = a.showAndWait();
+                                                if (bt.get() == ButtonType.YES) {
+                                                    ((Stage) progresso.getScene().getWindow()).close();
+                                                    try {
+                                                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Tela_Fim/FXML_Fim.fxml"));
+                                                        Parent root = loader.load();
+                                                        Scene scene = new Scene(root);
+                                                        Stage stage = new Stage();
+                                                        stage.setScene(scene);
+                                                        stage.show();
+
+                                                    } catch (IOException ex) {
+                                                        System.out.println("Erro ao abrir janela");
+                                                        ex.printStackTrace();
+                                                    }
+
                                                 }
 
-                                            }
+                                            });
 
                                         } else {
                                             opcao.setDisable(false);
@@ -131,7 +135,8 @@ public class FXMLDificilController implements Initializable {
 
                                     }
 
-                                }));
+                                }
+                                ));
                                 animacao.play();
 
                             }
@@ -140,19 +145,24 @@ public class FXMLDificilController implements Initializable {
 
                     }
                 } else {
+
                     desenho.setImage(img.get(64).getImagem());
                     Timeline animacao2 = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            desenho.setImage(null);
-                            Alert a = new Alert(Alert.AlertType.ERROR);
-                            a.setTitle("ERRO");
-                            a.setContentText("Ops! Sua resposta não está correta, tente de novo");
-                            a.show();
-                            System.out.println("Incorreta");
+                            Platform.runLater(() -> {
+                                desenho.setImage(null);
+                                Alert a = new Alert(Alert.AlertType.ERROR);
+                                a.setTitle("ERRO");
+                                a.setContentText("Ops! Sua resposta não está correta, tente de novo");
+                                a.show();
+                                System.out.println("Incorreta");
+                            });
+
                         }
 
-                    }));
+                    }
+                    ));
                     animacao2.play();
                 }
 
