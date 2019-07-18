@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 
 public class FXMLInicialController implements Initializable {
 
@@ -27,16 +28,22 @@ public class FXMLInicialController implements Initializable {
 
     @FXML
     public void entrar(ActionEvent event) {
-        if (nome.getText().isEmpty()) {
-            Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
-            dialogoErro.setTitle("Erro!");
-            dialogoErro.setHeaderText("Ocorreu um erro ao acesar");
-            dialogoErro.setContentText("Acho que você não inseriu seu nome! ");
-            dialogoErro.showAndWait();
-            
-        }else{
-            entrar.getScene().getWindow().hide();
 
+        if (nome.getText().isEmpty()) {
+            Platform.runLater(() -> {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro!");
+                dialogoErro.setHeaderText("Ocorreu um erro ao acesar");
+                dialogoErro.setContentText("Acho que vozcê não inseriu seu nome! ");
+                dialogoErro.showAndWait();
+            });
+
+        } else {
+            
+            String n = nome.getText().toUpperCase();
+            Aluno.setNome(n);
+            
+            entrar.getScene().getWindow().hide();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/EscolherJogo/FXMLEscolherJogo.fxml"));
                 Parent root = loader.load();
@@ -57,7 +64,6 @@ public class FXMLInicialController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Font.loadFont(FXMLInicialController.class.getResource("Doodletoon line.ttf").toExternalForm(), 10);
-
 
     }
 

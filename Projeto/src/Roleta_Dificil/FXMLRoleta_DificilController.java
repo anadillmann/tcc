@@ -144,7 +144,7 @@ public class FXMLRoleta_DificilController implements Initializable {
                             preenche[i].setText(faltas[i]);
                             opcao.setDisable(true);
                             if (cont == 2) {
-                                progresso_percentagem += 0.10;
+                                progresso_percentagem += 0.50;
                                 progresso.setProgress(progresso_percentagem);
                                 System.out.println("Correta");
                                 if (progresso_percentagem >= 1) {
@@ -154,7 +154,7 @@ public class FXMLRoleta_DificilController implements Initializable {
                                     if (bt.get() == ButtonType.YES) {
                                         ((Stage) progresso.getScene().getWindow()).close();
                                         try {
-                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicial/FXMLInicial.fxml"));
+                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Tela_Fim/FXML_Fim.fxml"));
                                             Parent root = loader.load();
 
                                             Scene scene = new Scene(root);

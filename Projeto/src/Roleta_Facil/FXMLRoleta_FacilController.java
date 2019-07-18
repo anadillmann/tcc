@@ -138,7 +138,9 @@ public class FXMLRoleta_FacilController implements Initializable {
                     progresso_percentagem += 0.10;
                     progresso.setProgress(progresso_percentagem);
                     System.out.println("Correta");
+                    
                     silaba_falta.setText(opcao.getText());
+                    
                     if (progresso_percentagem >= 1) {
                         Alert a = new Alert(Alert.AlertType.INFORMATION, ""
                                 + "Prabéns você conseguiu concluir a fase fácil!"

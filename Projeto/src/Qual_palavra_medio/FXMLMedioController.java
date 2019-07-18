@@ -110,7 +110,6 @@ public class FXMLMedioController implements Initializable {
                                                         + "Prabéns você conseguiu concluir a fase média!"
                                                         + " Vamos para a fase difícil?",
                                                         ButtonType.YES, ButtonType.NO);
-                                                a.setHeaderText(obtemPalavrasCertas());
                                                 Optional<ButtonType> bt = a.showAndWait();
                                                 if (bt.get() == ButtonType.YES) {
                                                     ((Stage) progresso.getScene().getWindow()).close();
@@ -172,43 +171,37 @@ public class FXMLMedioController implements Initializable {
                                 a.show();
                                 System.out.println("Incorreta");
                             });
-                            }
-
                         }
 
-                        ));
-                        animacao2.play ();
                     }
+                    ));
+                    animacao2.play();
+                }
 
-                });
-            }
+            });
         }
+    }
 
-        @FXML
-        public void voltar
-        (ActionEvent event
-        
-            ) {
+    @FXML
+    public void voltar(ActionEvent event) {
         voltar.getScene().getWindow().hide();
 
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_nivel/FXMLNivel.fxml"));
-                Parent root = loader.load();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Qual_palavra_nivel/FXMLNivel.fxml"));
+            Parent root = loader.load();
 
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.setResizable(false);
-                stage.setScene(scene);
-                stage.show();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
 
-            } catch (IOException ex) {
-                System.out.println("Erro ao abrir janela");
-                ex.printStackTrace();
-            }
-
+        } catch (IOException ex) {
+            System.out.println("Erro ao abrir janela");
+            ex.printStackTrace();
         }
 
-    
+    }
 
     private void sortear_palavras() {
         incorretos = new ArrayList();
@@ -308,19 +301,5 @@ public class FXMLMedioController implements Initializable {
             }
         }
         return false;
-    }
-
-    private String obtemPalavrasCertas() {
-        String resp = "";
-        int conta_palavras = 1;
-
-        for (String palavras_sorteada : palavras_sorteadas) {
-            resp += palavras_sorteada + " ";
-            if (conta_palavras % 5 == 0) {
-                resp += "\n";
-            }
-            conta_palavras++;
-        }
-        return resp;
     }
 }

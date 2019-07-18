@@ -19,7 +19,7 @@
             <Font size="56.0" />
          </font>
       </Label>
-      <Label fx:id="label" layoutX="245.0" layoutY="123.0" text="PARABÉNS!">
+      <Label fx:id="label" layoutX="178.0" layoutY="123.0" text="PARABÉNS!">
          <font>
             <Font size="22.0" />
          </font>
@@ -34,6 +34,7 @@
             <Image url="@../imagem/medalha.png" />
          </image>
       </ImageView>
-      <Button layoutX="478.0" layoutY="339.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="108.0" text="Escolher jogo" />
+      <Button fx:id="escolher" layoutX="478.0" layoutY="339.0" mnemonicParsing="false" onAction="#escolher_jogo" prefHeight="48.0" prefWidth="108.0" text="Escolher jogo" />
+      <Label fx:id="nome" layoutX="329.0" layoutY="123.0" prefHeight="34.0" prefWidth="128.0" />
    </children>
 </AnchorPane>
