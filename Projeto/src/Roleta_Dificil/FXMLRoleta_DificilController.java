@@ -28,6 +28,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -72,6 +73,8 @@ public class FXMLRoleta_DificilController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setResizable(false);
+            Image icon = new Image(getClass().getResourceAsStream("/imagem/abc.png"));
+            stage.getIcons().add(icon);
             stage.setScene(scene);
             stage.show();
 
@@ -144,7 +147,7 @@ public class FXMLRoleta_DificilController implements Initializable {
                             preenche[i].setText(faltas[i]);
                             opcao.setDisable(true);
                             if (cont == 2) {
-                                progresso_percentagem += 0.50;
+                                progresso_percentagem += 0.10;
                                 progresso.setProgress(progresso_percentagem);
                                 System.out.println("Correta");
                                 if (progresso_percentagem >= 1) {
@@ -159,6 +162,8 @@ public class FXMLRoleta_DificilController implements Initializable {
 
                                             Scene scene = new Scene(root);
                                             Stage stage = new Stage();
+                                            Image icon = new Image(getClass().getResourceAsStream("/imagem/abc.png"));
+                                            stage.getIcons().add(icon);
                                             stage.setScene(scene);
                                             stage.show();
 

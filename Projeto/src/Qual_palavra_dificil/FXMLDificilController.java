@@ -30,6 +30,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -116,6 +117,8 @@ public class FXMLDificilController implements Initializable {
                                                         Parent root = loader.load();
                                                         Scene scene = new Scene(root);
                                                         Stage stage = new Stage();
+                                                        Image icon = new Image(getClass().getResourceAsStream("/imagem/abc.png"));
+                                                        stage.getIcons().add(icon);
                                                         stage.setScene(scene);
                                                         stage.show();
 
@@ -283,6 +286,8 @@ public class FXMLDificilController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setResizable(false);
+            Image icon = new Image(getClass().getResourceAsStream("/imagem/abc.png"));
+            stage.getIcons().add(icon);
             stage.setScene(scene);
             stage.show();
 

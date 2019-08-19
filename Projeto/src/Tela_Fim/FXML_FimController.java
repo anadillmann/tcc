@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -18,7 +19,7 @@ public class FXML_FimController implements Initializable {
 
     @FXML
     Button escolher;
-    
+
     @FXML
     Label nome;
 
@@ -31,6 +32,8 @@ public class FXML_FimController implements Initializable {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
+            Image icon = new Image(getClass().getResourceAsStream("/imagem/abc.png"));
+            stage.getIcons().add(icon);
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
@@ -43,9 +46,9 @@ public class FXML_FimController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         nome.setText(Aluno.getNome());
-        
+
         Font.loadFont(FXML_FimController.class.getResource("Doodletoon line.ttf").toExternalForm(), 10);
         // TODO
     }

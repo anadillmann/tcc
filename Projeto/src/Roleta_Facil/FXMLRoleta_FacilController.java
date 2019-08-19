@@ -30,6 +30,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -74,6 +75,8 @@ public class FXMLRoleta_FacilController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setResizable(false);
+            Image icon = new Image(getClass().getResourceAsStream("/imagem/abc.png"));
+            stage.getIcons().add(icon);
             stage.setScene(scene);
             stage.show();
 
@@ -99,7 +102,10 @@ public class FXMLRoleta_FacilController implements Initializable {
         RotateTransition girar_roleta = new RotateTransition(Duration.seconds(4), r);
         Random r = new Random();//botões
 
-        int numAleatorio = ((pos + 4) % 18) * 20 + 5 * 360 + 10;
+        int numAleatorio = 90 + 5 * 360 + pos * 20;
+        //Como a seta inciia no meio da roleta, é necessário que comece na posição 0 (90º)
+        //ele gira 5 vezes
+        //Em seguida, de acordo com a posição que tiver a resposta ele vai se deslocar
         girar_roleta.setFromAngle(0);
         girar_roleta.setToAngle(numAleatorio);
 
@@ -138,9 +144,9 @@ public class FXMLRoleta_FacilController implements Initializable {
                     progresso_percentagem += 0.10;
                     progresso.setProgress(progresso_percentagem);
                     System.out.println("Correta");
-                    
+
                     silaba_falta.setText(opcao.getText());
-                    
+
                     if (progresso_percentagem >= 1) {
                         Alert a = new Alert(Alert.AlertType.INFORMATION, ""
                                 + "Prabéns você conseguiu concluir a fase fácil!"
@@ -154,6 +160,8 @@ public class FXMLRoleta_FacilController implements Initializable {
                                 Parent root = loader.load();
                                 Scene scene = new Scene(root);
                                 Stage stage = new Stage();
+                                Image icon = new Image(getClass().getResourceAsStream("/imagem/abc.png"));
+                                stage.getIcons().add(icon);
                                 stage.setScene(scene);
                                 stage.show();
 
@@ -169,6 +177,8 @@ public class FXMLRoleta_FacilController implements Initializable {
 
                                 Scene scene = new Scene(root);
                                 Stage stage = new Stage();
+                                Image icon = new Image(getClass().getResourceAsStream("/imagem/abc.png"));
+                                stage.getIcons().add(icon);
                                 stage.setScene(scene);
                                 stage.show();
 

@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 
 public class FXMLInicialController implements Initializable {
 
@@ -51,6 +52,8 @@ public class FXMLInicialController implements Initializable {
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setResizable(false);
+                Image icon = new Image(getClass().getResourceAsStream("/imagem/abc.png"));
+                stage.getIcons().add(icon);
                 stage.setScene(scene);
                 stage.show();
 
