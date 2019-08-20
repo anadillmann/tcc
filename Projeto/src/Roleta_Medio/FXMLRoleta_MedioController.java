@@ -140,6 +140,8 @@ public class FXMLRoleta_MedioController implements Initializable {
         for (Button opcao : opcoes) {
             opcao.setOnAction(e -> {
                 Button botao = ((Button) e.getSource());
+                System.out.println(botao.getText());
+                System.out.println(incorretos.toString());
                 if (!incorretos.contains(botao)) {
                     for (int i = 0; i < faltas.length; i++) {
                         if (opcao.getText().equals(faltas[i])) {
@@ -268,7 +270,11 @@ public class FXMLRoleta_MedioController implements Initializable {
             }
 
         }
-
+        
+        for(Button op : opcoes) {
+            op.setText("");
+        }
+        
         int pos1 = r.nextInt(5) + 0;
 
         opcoes[pos1].setText(silabas[0]);
@@ -282,7 +288,7 @@ public class FXMLRoleta_MedioController implements Initializable {
         opcoes[pos2].setDisable(false);
 
         for (int j = 0; j < 6; j++) {
-            opcoes[j].setDisable(false);
+            opcoes[j].setDisable(false);         
             if (opcoes[j].getText().isEmpty()) {
                 String sortida_sorteada;
                 do {

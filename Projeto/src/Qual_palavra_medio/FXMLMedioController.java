@@ -90,6 +90,7 @@ public class FXMLMedioController implements Initializable {
         for (Button opcao : opcoes) {
             opcao.setOnAction(e -> {
                 Button botao = ((Button) e.getSource());
+                
                 if (!incorretos.contains(botao)) {
                     for (int i = 0; i < faltas.length; i++) {
                         if (opcao.getText().equals(faltas[i])) {

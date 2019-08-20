@@ -247,6 +247,10 @@ public class FXMLRoleta_DificilController implements Initializable {
 
         }
 
+        for (Button op : opcoes) {
+            op.setText("");
+        }
+
         int pos1 = r.nextInt(8) + 0;
 
         opcoes[pos1].setText(silabas[0]);
