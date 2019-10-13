@@ -15,22 +15,31 @@
         <URL value="@../Roleta_Facil/fxmlroleta_facil.css" />
     </stylesheets>
    <children>
-      <Label fx:id="silaba_aparece" layoutX="452.0" layoutY="171.0" prefHeight="41.0" prefWidth="55.0" textAlignment="CENTER">
+      <Label fx:id="silaba_aparece" layoutX="444.0" layoutY="171.0" prefHeight="41.0" prefWidth="63.0" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <TextField fx:id="silaba_falta2" layoutX="518.0" layoutY="176.0" prefHeight="32.0" prefWidth="41.0" />
-      <Button fx:id="opcao1" layoutX="342.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
-      <Button fx:id="opcao2" layoutX="409.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
-      <Button fx:id="opcao3" layoutX="477.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
+      <Button fx:id="opcao1" layoutX="342.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="opcao2" layoutX="409.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="opcao3" layoutX="477.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
       <ProgressBar fx:id="progresso" layoutY="374.0" prefHeight="25.0" prefWidth="600.0" progress="0.05" />
       <Text fx:id="title" layoutX="164.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roleta Silábica">
          <font>
             <Font size="26.0" />
          </font>
       </Text>
-      <Button fx:id="voltar" layoutX="2.0" layoutY="3.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Button fx:id="voltar" layoutX="2.0" layoutY="3.0" mnemonicParsing="false" onAction="#voltar" prefHeight="32.0" prefWidth="56.0" text="Voltar" />
       <Circle fx:id="circle_m" fill="#cfdce8" layoutX="175.0" layoutY="216.0" radius="151.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
       <Circle fx:id="circ1" fill="#9e4806" layoutX="176.0" layoutY="89.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="circ2" fill="#1fff92" layoutX="219.0" layoutY="97.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
@@ -50,108 +59,129 @@
       <Circle fx:id="circ16" fill="#ff1fdb" layoutX="67.0" layoutY="149.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="circ17" fill="#ff1f1f" layoutX="96.0" layoutY="116.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="circ18" fill="#61a3e1" layoutX="133.0" layoutY="95.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label fx:id="silaba1" layoutX="161.0" layoutY="70.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba1" layoutX="161.0" layoutY="70.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba2" layoutX="203.0" layoutY="78.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba2" layoutX="203.0" layoutY="78.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba3" layoutX="242.0" layoutY="101.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba3" layoutX="242.0" layoutY="101.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba4" layoutX="270.0" layoutY="135.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba4" layoutX="270.0" layoutY="135.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba5" layoutX="285.0" layoutY="177.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba5" layoutX="285.0" layoutY="177.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba6" layoutX="284.0" layoutY="221.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba6" layoutX="284.0" layoutY="221.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba7" layoutX="268.0" layoutY="262.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba7" layoutX="268.0" layoutY="262.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba8" layoutX="240.0" layoutY="296.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba8" layoutX="240.0" layoutY="296.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba9" layoutX="201.0" layoutY="317.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba9" layoutX="201.0" layoutY="317.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
       <Label fx:id="silaba10" layoutX="157.0" layoutY="324.0" prefHeight="38.0" prefWidth="32.0">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba11" layoutX="113.0" layoutY="315.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba11" layoutX="113.0" layoutY="315.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
       <Label fx:id="silaba12" layoutX="74.0" layoutY="294.0" prefHeight="38.0" prefWidth="32.0">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba13" layoutX="47.0" layoutY="258.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba13" layoutX="47.0" layoutY="258.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba14" layoutX="34.0" layoutY="215.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba14" layoutX="34.0" layoutY="215.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba15" layoutX="35.0" layoutY="171.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba15" layoutX="35.0" layoutY="171.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba16" layoutX="52.0" layoutY="130.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba16" layoutX="52.0" layoutY="130.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba17" layoutX="80.0" layoutY="99.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba17" layoutX="80.0" layoutY="99.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="silaba18" layoutX="117.0" layoutY="76.0" prefHeight="38.0" prefWidth="32.0">
+      <Label fx:id="silaba18" layoutX="117.0" layoutY="76.0" prefHeight="38.0" prefWidth="32.0" textAlignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="opcao4" layoutX="373.0" layoutY="297.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
-      <Button fx:id="opcao5" layoutX="447.0" layoutY="298.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
-      <Button fx:id="opcao6" layoutX="540.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
+      <Button fx:id="opcao4" layoutX="373.0" layoutY="297.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="opcao5" layoutX="447.0" layoutY="298.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="opcao6" layoutX="540.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
       <TextField fx:id="silaba_falta1" layoutX="392.0" layoutY="177.0" prefHeight="32.0" prefWidth="41.0" />
-      <Button fx:id="opcao7" layoutX="410.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
-      <Button fx:id="opcao8" layoutX="489.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
-      <Button fx:id="opcao9" layoutX="518.0" layoutY="297.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" />
+      <Button fx:id="opcao7" layoutX="410.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="opcao8" layoutX="489.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="opcao9" layoutX="518.0" layoutY="297.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
       <ImageView fx:id="r" fitHeight="75.0" fitWidth="166.0" layoutX="103.0" layoutY="182.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagem/flecha.png" />
          </image>
       </ImageView>
-      <Button fx:id="girar" layoutX="268.0" layoutY="336.0" mnemonicParsing="false" onAction="#girar" prefHeight="32.0" prefWidth="55.0" text="Girar" />
+      <Button fx:id="girar" layoutX="268.0" layoutY="330.0" mnemonicParsing="false" onAction="#girar" prefHeight="38.0" prefWidth="70.0" text="Girar">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
    </children>
 </AnchorPane>

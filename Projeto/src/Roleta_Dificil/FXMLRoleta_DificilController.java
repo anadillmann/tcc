@@ -86,32 +86,28 @@ public class FXMLRoleta_DificilController implements Initializable {
 
     @FXML
     public void girar() {
-
         int pos = 0;
-
         for (int i = 0; i < circle.length; i++) {
             if (silaba_aparece.getText().equals(circle[i].getText())) {
                 pos = i;
                 break;
             }
         }
-
-        RotateTransition girar_roleta = new RotateTransition(Duration.seconds(4), r);
+        
+        RotateTransition girar_roleta = new RotateTransition(Duration.seconds(4)
+                , r);
         Random r = new Random();//botões
-
         int numAleatorio = ((pos + 4) % 18) * 20 + 5 * 360 + 10;
         girar_roleta.setFromAngle(0);
         girar_roleta.setToAngle(numAleatorio);
-
         girar_roleta.play();
-
-        Timeline animacao = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+        Timeline animacao = new Timeline(new KeyFrame(Duration.seconds(5), 
+                new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 silaba_falta1.setVisible(true);
                 silaba_falta2.setVisible(true);
                 silaba_aparece.setVisible(true);
-
                 for (int j = 0; j < opcoes.length; j++) {
                     opcoes[j].setVisible(true);
                 }

@@ -20,30 +20,51 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Label fx:id="silaba_aparece1" layoutX="310.0" layoutY="108.0" prefHeight="38.0" prefWidth="52.0" textAlignment="CENTER" textFill="#110202">
+      <Label fx:id="silaba_aparece1" layoutX="300.0" layoutY="108.0" prefHeight="38.0" prefWidth="72.0" textAlignment="CENTER" textFill="#110202">
          <font>
-            <Font size="22.0" />
+            <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="opcao1" layoutX="184.0" layoutY="279.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
+      <Button fx:id="opcao1" layoutX="184.0" layoutY="279.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
       <TextField fx:id="preencher1" layoutX="220.0" layoutY="108.0" prefHeight="38.0" prefWidth="52.0" />
       <ImageView fx:id="imagem1" fitHeight="53.0" fitWidth="52.0" layoutX="118.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="opcao2" layoutX="277.0" layoutY="280.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
-      <Button fx:id="opcao3" layoutX="373.0" layoutY="279.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
+      <Button fx:id="opcao2" layoutX="277.0" layoutY="280.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="opcao3" layoutX="373.0" layoutY="279.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
       <ProgressBar fx:id="progresso" layoutX="1.0" layoutY="374.0" prefHeight="25.0" prefWidth="600.0" progress="0.05" />
       <TextField fx:id="preencher2" layoutX="394.0" layoutY="108.0" prefHeight="38.0" prefWidth="52.0" />
       <TextField fx:id="preencher3" layoutX="222.0" layoutY="168.0" prefHeight="38.0" prefWidth="52.0" />
       <TextField fx:id="preencher4" layoutX="393.0" layoutY="168.0" prefHeight="38.0" prefWidth="52.0" />
-      <Label fx:id="silaba_aparece2" layoutX="310.0" layoutY="168.0" prefHeight="38.0" prefWidth="52.0" textAlignment="CENTER" textFill="#110202">
+      <Label fx:id="silaba_aparece2" layoutX="300.0" layoutY="168.0" prefHeight="38.0" prefWidth="72.0" textAlignment="CENTER" textFill="#110202">
          <font>
-            <Font size="22.0" />
+            <Font size="25.0" />
          </font>
       </Label>
       <ImageView fx:id="imagem2" fitHeight="53.0" fitWidth="52.0" layoutX="119.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="opcao4" layoutX="184.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
-      <Button fx:id="opcao5" layoutX="277.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
-      <Button fx:id="opcao6" layoutX="373.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0" />
-      <Button fx:id="voltar" layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Button fx:id="opcao4" layoutX="184.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="opcao5" layoutX="277.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="opcao6" layoutX="373.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="voltar" layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
       <ImageView fx:id="desenho" fitHeight="106.0" fitWidth="107.0" layoutX="24.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
